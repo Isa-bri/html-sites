@@ -254,6 +254,66 @@
   .sum-card .sum-cat { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
   .sum-card .sum-pick { font-size: 13px; font-weight: 600; color: var(--accent); margin: 4px 0 2px; }
   .sum-card .sum-why { font-size: 11px; color: var(--muted); }
+
+  /* ── SUB-SECTIONS ── */
+  .sub-header {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: 700;
+    color: var(--text);
+    margin: 32px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .highlight-box {
+    background: rgba(94,231,176,.08);
+    border-left: 3px solid var(--accent2);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    font-size: 12px;
+    margin: 12px 0;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .highlight-box strong { color: var(--accent2); }
+  .info-box {
+    background: rgba(96,165,250,.08);
+    border-left: 3px solid var(--mid);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    font-size: 12px;
+    margin: 12px 0;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .faq-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .faq-q { font-weight: 700; color: var(--accent); font-size: 13px; margin-bottom: 8px; }
+  .faq-a { color: var(--muted); font-size: 12px; line-height: 1.8; }
+  .profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .profile-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .profile-card .profile-type { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 4px; }
+  .profile-card .profile-pick { font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 4px; }
+  .profile-card .profile-why { font-size: 11px; color: var(--muted); margin-bottom: 6px; line-height: 1.5; }
+  .profile-card .profile-price { font-size: 12px; color: var(--accent2); font-weight: 700; }
+  .drying-table { width: 100%; border-collapse: collapse; min-width: 400px; }
+  .drying-table td, .drying-table th { padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 12px; }
+  .drying-table th { text-align: left; color: var(--muted); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; background: var(--card); }
 </style>
 </head>
 <body>
@@ -265,8 +325,8 @@
     <span class="badge-v2">✦ VERSÃO 2 REVISADA</span>
   </div>
   <h1>🏆 Guia de Produtos<br>Melhor Custo-Benefício</h1>
-  <p>90 produtos · 9 categorias · Preços verificados em Amazon, Mercado Livre, Casas Bahia e Magazine Luiza</p>
-  <p style="margin-top:6px;">Fontes: TechTudo · Promobit · Zoom · Buscapé · TesteCasa · Reclame Aqui · Mapa da Cozinha</p>
+  <p>120+ produtos · 12 categorias · Preços verificados em Amazon, Mercado Livre, Casas Bahia e Magazine Luiza</p>
+  <p style="margin-top:6px;">Fontes: TechTudo · Promobit · Zoom · Buscapé · TesteCasa · Reclame Aqui · Mapa da Cozinha · MyBest · Tecnoblog</p>
 </div>
 
 <!-- NAV -->
@@ -280,6 +340,13 @@
   <a href="#prensa">☕ Prensa Francesa</a>
   <a href="#purificador">💧 Purificador</a>
   <a href="#chaleira">🫖 Chaleira</a>
+  <a href="#liquidificador">🥤 Liquidificador</a>
+  <a href="#lavadora">🧺 Lavadora</a>
+  <a href="#lavaseca">👔 Lava e Seca</a>
+  <a href="#marcas">🏢 Marcas</a>
+  <a href="#dicas">🛠️ Dicas</a>
+  <a href="#perfis">👨‍👩‍👧‍👦 Perfis</a>
+  <a href="#faq">❓ FAQ</a>
 </nav>
 
 <!-- PICKS RÁPIDOS -->
@@ -293,6 +360,9 @@
   <div class="sum-card"><div class="sum-cat">☕ Prensa Francesa</div><div class="sum-pick">Hamilton Beach 1L</div><div class="sum-why">Espumador + 3 anos garantia · ~R$ 175</div></div>
   <div class="sum-card"><div class="sum-cat">💧 Purificador</div><div class="sum-pick">Consul CPB34AS</div><div class="sum-why">Classe A + bacteriológico · ~R$ 550</div></div>
   <div class="sum-card"><div class="sum-cat">🫖 Chaleira</div><div class="sum-pick">Black+Decker K2200</div><div class="sum-why">2L + controle 40-100°C · ~R$ 160</div></div>
+  <div class="sum-card"><div class="sum-cat">🥤 Liquidificador</div><div class="sum-pick">Oster OLIQ610</div><div class="sum-why">1.400W por ~R$ 170 · 41K+ avaliações</div></div>
+  <div class="sum-card"><div class="sum-cat">🧺 Lavadora</div><div class="sum-pick">LG WT16WV6A</div><div class="sum-why">16kg Inverter + IA · ~R$ 2.019</div></div>
+  <div class="sum-card"><div class="sum-cat">👔 Lava e Seca</div><div class="sum-pick">Samsung WD11M</div><div class="sum-why">Campeã de vendas · 20 anos gar. motor · ~R$ 2.528</div></div>
 </div>
 
 

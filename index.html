@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>html-sites</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family-sans-serif: system-ui, -apple-system, sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+    }
+    header {
+      padding-top: 3rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--pico-muted-border-color);
+    }
+    header h1 {
+      margin-bottom: 0.25rem;
+    }
+    header p {
+      color: var(--pico-muted-color);
+      margin-bottom: 0;
+    }
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    article {
+      margin: 0;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    article:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    article a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    article a:hover {
+      color: inherit;
+    }
+    .card-meta {
+      font-size: 0.8rem;
+      color: var(--pico-muted-color);
+      margin-top: 0.5rem;
+      margin-bottom: 0;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.15em 0.55em;
+      border-radius: 999px;
+      background: var(--pico-primary-background);
+      color: var(--pico-primary);
+      margin-bottom: 0.6rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: var(--pico-muted-color);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--pico-muted-border-color);
+    }
+    footer a {
+      color: var(--pico-muted-color);
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>html-sites</h1>
+      <p>Random HTML things I have, hosted on GitHub Pages.</p>
+    </header>
+
+    <section>
+      <div class="grid-cards">
+
+        <article>
+          <a href="guia_produtos_2026_v2.html">
+            <span class="tag">PT-BR</span>
+            <h3>Guia de Produtos 2026</h3>
+            <p>Guia definitivo de melhor custo-benefício em liquidificadores e máquinas de lavar no Brasil.</p>
+            <p class="card-meta">guia_produtos_2026_v2.html &rarr;</p>
+          </a>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <a href="https://github.com/isa-bri/html-sites" target="_blank" rel="noopener">isa-bri/html-sites</a>
+      on GitHub Pages
+    </div>
+  </footer>
+</body>
+</html>

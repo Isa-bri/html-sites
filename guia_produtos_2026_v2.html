@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia de Produtos V2 – Melhor Custo-Benefício 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #161a23;
+    --card: #1e2330;
+    --border: #2a3045;
+    --accent: #f0c040;
+    --accent2: #5ee7b0;
+    --text: #e8eaf0;
+    --muted: #8892a8;
+    --eco: #4ade80;
+    --mid: #60a5fa;
+    --prem: #e879f9;
+    --stars: #f59e0b;
+    --roi: #10b981;
+    --warn: #f97316;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #0d0f14 0%, #1a1f2e 50%, #0d1420 100%);
+    padding: 60px 24px 40px;
+    text-align: center;
+    border-bottom: 2px solid var(--accent);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(240,192,64,.14) 0%, transparent 70%);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900;
+    color: var(--accent);
+    letter-spacing: -1px;
+    position: relative;
+  }
+  .hero p { color: var(--muted); margin-top: 10px; font-size: 13px; position: relative; }
+  .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    margin-right: 6px;
+  }
+  .badge-v2 {
+    display: inline-block;
+    background: var(--roi);
+    color: #fff;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding: 20px 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    transition: all .2s;
+    letter-spacing: .5px;
+  }
+  .nav a:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+
+  /* ── SECTION ── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .section-icon { font-size: 32px; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .section-subtitle { color: var(--muted); font-size: 12px; margin-top: 2px; }
+
+  /* ── BOXES ── */
+  .note {
+    background: rgba(240,192,64,.08);
+    border-left: 3px solid var(--accent);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+  .roi-box {
+    background: rgba(16,185,129,.08);
+    border-left: 3px solid var(--roi);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    font-size: 12px;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  .roi-box strong { color: var(--roi); display: block; margin-bottom: 4px; font-size: 11px; letter-spacing: .5px; text-transform: uppercase; }
+  .roi-box span { color: #a7f3d0; }
+  .warn-box {
+    background: rgba(249,115,22,.08);
+    border-left: 3px solid var(--warn);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    color: #fed7aa;
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+
+  /* ── LEGEND ── */
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .leg { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* ── TABLE ── */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; min-width: 720px; }
+  thead tr { background: var(--card); }
+  th {
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    font-size: 13px;
+  }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) { background: rgba(255,255,255,.02); }
+  tbody tr:hover { background: rgba(240,192,64,.04); }
+  .tier {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    white-space: nowrap;
+  }
+  .eco  { background: rgba(74,222,128,.15); color: var(--eco); }
+  .mid  { background: rgba(96,165,250,.15); color: var(--mid); }
+  .prem { background: rgba(232,121,249,.15); color: var(--prem); }
+  .price { font-weight: 700; color: var(--accent); white-space: nowrap; }
+  .pros  { color: #6ee7b7; font-size: 12px; }
+  .cons  { color: #f87171; font-size: 12px; }
+  .stars { color: var(--stars); font-size: 13px; white-space: nowrap; }
+  .name  { font-weight: 600; color: var(--text); }
+  .feat  { color: var(--muted); font-size: 12px; }
+  a.buy {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity .2s;
+  }
+  a.buy:hover { opacity: .8; }
+  .new { display:inline-block; background:rgba(16,185,129,.2); color:var(--roi); font-size:9px; font-weight:700; padding:1px 5px; border-radius:4px; margin-left:4px; vertical-align:middle; letter-spacing:.5px; }
+  .warn-tag { display:inline-block; background:rgba(249,115,22,.2); color:var(--warn); font-size:9px; font-weight:700; padding:1px 5px; border-radius:4px; margin-left:4px; vertical-align:middle; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 30px 16px;
+    color: var(--muted);
+    font-size: 11px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── SUMMARY CARDS ── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sum-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .sum-card .sum-cat { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
+  .sum-card .sum-pick { font-size: 13px; font-weight: 600; color: var(--accent); margin: 4px 0 2px; }
+  .sum-card .sum-why { font-size: 11px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <span class="badge">ABRIL 2026</span>
+    <span class="badge-v2">✦ VERSÃO 2 REVISADA</span>
+  </div>
+  <h1>🏆 Guia de Produtos<br>Melhor Custo-Benefício</h1>
+  <p>90 produtos · 9 categorias · Preços verificados em Amazon, Mercado Livre, Casas Bahia e Magazine Luiza</p>
+  <p style="margin-top:6px;">Fontes: TechTudo · Promobit · Zoom · Buscapé · TesteCasa · Reclame Aqui · Mapa da Cozinha</p>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#geladeira">🧊 Geladeira</a>
+  <a href="#fogao">🔥 Fogão</a>
+  <a href="#microondas">📡 Micro-ondas</a>
+  <a href="#arroz">🍚 Panela de Arroz</a>
+  <a href="#lava">🍽️ Lava-louças</a>
+  <a href="#colchao">🛏️ Colchão</a>
+  <a href="#prensa">☕ Prensa Francesa</a>
+  <a href="#purificador">💧 Purificador</a>
+  <a href="#chaleira">🫖 Chaleira</a>
+</nav>
+
+<!-- PICKS RÁPIDOS -->
+<div class="summary-grid">
+  <div class="sum-card"><div class="sum-cat">🧊 Geladeira</div><div class="sum-pick">Electrolux IF43B</div><div class="sum-why">Melhor CB com Inverter · ~R$ 3.100</div></div>
+  <div class="sum-card"><div class="sum-cat">🔥 Fogão</div><div class="sum-pick">Dako Magister Style 5B</div><div class="sum-why">Ferro fundido + forno 100L · ~R$ 1.780</div></div>
+  <div class="sum-card"><div class="sum-cat">📡 Micro-ondas</div><div class="sum-pick">Electrolux MEO44</div><div class="sum-why">34L + 1400W = melhor W/R$ · ~R$ 660</div></div>
+  <div class="sum-card"><div class="sum-cat">🍚 Panela de Arroz</div><div class="sum-pick">Electrolux RCB50</div><div class="sum-why">7 xícaras + tampa vidro · ~R$ 167</div></div>
+  <div class="sum-card"><div class="sum-cat">🍽️ Lava-louças</div><div class="sum-pick">Midea DWA14P1</div><div class="sum-why">14 serviços pelo preço de 8 · ~R$ 3.200</div></div>
+  <div class="sum-card"><div class="sum-cat">🛏️ Colchão</div><div class="sum-pick">Guldi Original Firme</div><div class="sum-why">215 molas/m² + 5 anos gar. · ~R$ 1.500</div></div>
+  <div class="sum-card"><div class="sum-cat">☕ Prensa Francesa</div><div class="sum-pick">Hamilton Beach 1L</div><div class="sum-why">Espumador + 3 anos garantia · ~R$ 175</div></div>
+  <div class="sum-card"><div class="sum-cat">💧 Purificador</div><div class="sum-pick">Consul CPB34AS</div><div class="sum-why">Classe A + bacteriológico · ~R$ 550</div></div>
+  <div class="sum-card"><div class="sum-cat">🫖 Chaleira</div><div class="sum-pick">Black+Decker K2200</div><div class="sum-why">2L + controle 40-100°C · ~R$ 160</div></div>
+</div>
+
+
+<!-- ════════════════════════════════════════ -->
+<!--  1. GELADEIRA                           -->
+<!-- ════════════════════════════════════════ -->
+<section class="section" id="geladeira">
+  <div class="section-header">
+    <span class="section-icon">🧊</span>
+    <div>
+      <div class="section-title">Geladeiras</div>
+      <div class="section-subtitle">Top 10 custo-benefício · Dados de consumo verificados março/abril 2026</div>
+    </div>
+  </div>
+  <div class="note">💡 <strong>Regra de ouro:</strong> Inverter + Procel A+++ = menor conta de luz. A tecnologia Inverter ajusta a potência continuamente (versus liga/desliga dos modelos comuns), gerando até 42% de economia e compressores que duram décadas.</div>
+  <div class="warn-box">⚠️ <strong>Atenção:</strong> A Brastemp BRE57AK (#9) consome 67 kWh/mês e não tem Inverter — dado que frustra muitos compradores. Compare com a Electrolux IB7S (#6): 490L, Inverter e 42,9 kWh/mês por preço similar.</div>
+  <div class="legend">
+    <div class="leg"><div class="dot" style="background:var(--eco)"></div> Econômico (até R$ 3.000)</div>
+    <div class="leg"><div class="dot" style="background:var(--mid)"></div> Intermediário (R$ 3.000–5.500)</div>
+    <div class="leg"><div class="dot" style="background:var(--prem)"></div> Premium (acima R$ 5.500)</div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Faixa</th><th>Modelo</th><th>Preço Médio</th><th>Capacidade / Consumo</th><th>✅ Prós</th><th>❌ Contras</th><th>⭐</th><th>Comprar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="tier eco">ECO</span></td><td><span class="name">Consul CRM44AB</span></td><td class="price">~R$ 2.500</td><td class="feat">386L · 56,2 kWh/mês · Frost Free · Altura Flex · Procel A</td><td class="pros">Altura Flex (prateleiras ajustáveis 4 níveis); Compartimento Extra Frio; Excelente CB básico; Marca confiável</td><td class="cons">Sem Inverter; Sem painel touch; Design simples</td><td class="stars">⭐ 4,5</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Consul+CRM44AB" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>2</td><td><span class="tier eco">ECO</span></td><td><span class="name">Panasonic NR-BT41PD1X <span class="new">A+++</span></span></td><td class="price">~R$ 2.620</td><td class="feat">387L · <strong>39,4 kWh/mês</strong> · Frost Free · Antibacteria Ag · Painel eletrônico</td><td class="pros">🏆 Mais eficiente da faixa ECO; 39,4 kWh (30% menos que concorrentes); Antibacteria AG 99,9%; Silenciosa</td><td class="cons">Sem Inverter; Assistência técnica com menos pontos no Brasil</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Panasonic+NR-BT41PD1X" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>3</td><td><span class="tier eco">ECO</span></td><td><span class="name">Brastemp BRM44HB</span></td><td class="price">~R$ 2.640</td><td class="feat">375L · 54 kWh/mês · Frost Free · Extrafrio · Fresh Zone</td><td class="pros">Compartimento Extrafrio gela em 30 min; Fresh Zone (frutas/verduras); Marca com 10 anos de tradição no BR</td><td class="cons">Sem Inverter; Consome 37% mais que a Panasonic acima</td><td class="stars">⭐ 4,5</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Brastemp+BRM44HB" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>4</td><td><span class="tier mid">INTER</span></td><td><span class="name">Electrolux IF43B <span class="new">INVERTER</span></span></td><td class="price">~R$ 3.100</td><td class="feat">390L · ~33 kWh/mês · Frost Free · Inverter · IA AutoSense · Procel A+++</td><td class="pros">🏆 Melhor CB com Inverter; AutoSense c/ IA; Procel A+++; Conserva alimentos 30% mais; HortiNatura</td><td class="cons">Capacidade levemente inferior aos concorrentes no preço</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+IF43B" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>5</td><td><span class="tier mid">INTER</span></td><td><span class="name">Consul CRM56FB</span></td><td class="price">~R$ 3.850</td><td class="feat">451L · 56,9 kWh/mês · Frost Free · Espaço Flex · Filtro Antiodor · A+</td><td class="pros">451L para família grande; Espaço Flex (10 configurações de porta); Filtro antiodor; Muito vendida</td><td class="cons">Sem Inverter; Consome mais energia que a IF43B com menos tecnologia</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Consul+CRM56FB" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>6</td><td><span class="tier mid">INTER</span></td><td><span class="name">Electrolux IB7S <span class="new">INVERSE</span></span></td><td class="price">~R$ 4.300</td><td class="feat">490L · 42,9 kWh/mês · Inverter · Inverse (freezer embaixo) · HortiNatura · Alarme porta</td><td class="pros">490L imensos; Inverter; Freezer embaixo (ergonômico); HortiNatura conserva 2x mais; Alarme porta aberta</td><td class="cons">Layout Inverse exige adaptação de hábitos; Maior profundidade</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+IB7S" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>7</td><td><span class="tier mid">INTER</span></td><td><span class="name">Brastemp BRE57AK <span class="warn-tag">⚠️ CONSOME MUITO</span></span></td><td class="price">~R$ 5.000</td><td class="feat">443L · 67 kWh/mês · Inverse · Frost Free · Turbo Ice · Evox antiferrugem</td><td class="pros">Turbo Ice; Twist Ice Advanced; Acabamento Evox; Design premium; Inverse ergonômica</td><td class="cons">⚠️ 67 kWh/mês — maior da lista. Sem Inverter. Custa mais e consome mais que a IB7S (490L + Inverter + R$700 mais barata)</td><td class="stars">⭐ 4,4</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Brastemp+BRE57AK" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>8</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Panasonic NR-BB53GV3B <span class="new">VITAMIN POWER</span></span></td><td class="price">~R$ 6.000</td><td class="feat">425L · 39,9 kWh/mês · Inverter · Vitamin Power LED · Econavi · Design vidro</td><td class="pros">Vitamin Power (LED que potencializa vitaminas C e D); Econavi (sensores de uso); Econômico mesmo sendo premium; Design vidro espelhado impecável</td><td class="cons">Vidro espelhado marca impressões digitais; Valor elevado</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Panasonic+NR-BB53GV3B" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>9</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Brastemp BRO85AK</span></td><td class="price">~R$ 6.600</td><td class="feat">554L · 56,6 kWh/mês · 3 portas · Inverter · French Door · Smart Flow</td><td class="pros">554L capacidade máxima da lista; Smart Flow distribuição uniforme de ar; Inverter; French Door sofisticada; Carbono AirFilter</td><td class="cons">Preço premium; Modelo French Door exige espaço generoso</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Brastemp+BRO85AK" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>10</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Electrolux IM8S <span class="new">IA</span></span></td><td class="price">~R$ 6.600</td><td class="feat">590L · <strong>32,6 kWh/mês</strong> · 3 portas · Inverter · IA AutoSense · TasteGuard · Inox</td><td class="pros">590L com apenas 32,6 kWh — melhor eficiência da lista; IA que aprende hábitos de consumo; TasteGuard elimina odores; HortiNatura; Design inox espetacular</td><td class="cons">Maior investimento; Requer espaço amplo</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+IM8S" target="_blank">Ver Oferta</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="roi-box">
+    <strong>💰 Por que o premium compensa na geladeira</strong>
+    <span>Com tarifa média de R$ 0,75/kWh, a diferença entre a BRM44HB (54 kWh) e a IM8S (32,6 kWh) gera <strong>R$ 192/ano de economia</strong> em energia — em 10 anos são R$ 1.920. Compressores Inverter também sofrem muito menos desgaste mecânico. Mas o argumento mais forte é o anti-intuitivo: a Electrolux IB7S (490L, Inverter, R$ 4.300) consome 56% menos que a Brastemp BRE57AK (443L, sem Inverter, R$ 5.000) — mais barata, maior e mais econômica.</span>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!--  2. FOGÃO                               -->
+<!-- ════════════════════════════════════════ -->
+<section class="section" id="fogao">
+  <div class="section-header">
+    <span class="section-icon">🔥</span>
+    <div>
+      <div class="section-title">Fogões</div>
+      <div class="section-subtitle">Top 10 custo-benefício · 4 e 5 bocas a gás · Dados atualizados 2026</div>
+    </div>
+  </div>
+  <div class="note">💡 <strong>Mesa de vidro temperado</strong> vence o inox em limpeza (pano úmido já resolve). <strong>Trempes de ferro fundido</strong> duram décadas sem deformar — apenas Dako e Brastemp BFS5VCE as oferecem. <strong>Queimador Tripla Chama</strong> ferve água 45% mais rápido que queimador simples.</div>
+  <div class="legend">
+    <div class="leg"><div class="dot" style="background:var(--eco)"></div> Econômico (até R$ 1.200)</div>
+    <div class="leg"><div class="dot" style="background:var(--mid)"></div> Intermediário (R$ 1.200–2.000)</div>
+    <div class="leg"><div class="dot" style="background:var(--prem)"></div> Premium (acima R$ 2.000)</div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Faixa</th><th>Modelo</th><th>Preço Médio</th><th>Características</th><th>✅ Prós</th><th>❌ Contras</th><th>⭐</th><th>Comprar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="tier eco">ECO</span></td><td><span class="name">Itatiaia Electra Glass 4B</span></td><td class="price">~R$ 750</td><td class="feat">4 bocas · Mesa vidro temperado · Acend. automático · Forno 48-51L</td><td class="pros">Mesa vidro temperado pelo menor preço; Acendimento automático; Fácil limpeza; Itatiaia confiável</td><td class="cons">Forno pequeno (48L); Apenas 4 bocas</td><td class="stars">⭐ 4,5</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Itatiaia+Electra+Glass" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>2</td><td><span class="tier eco">ECO</span></td><td><span class="name">Atlas Mônaco Plus 5B</span></td><td class="price">~R$ 900</td><td class="feat">5 bocas · Mesa inox · Forno 86,5L · Acend. automático · Queimador rápido</td><td class="pros">Forno 86,5L generoso; 5 bocas pelo menor preço; 4,7★; Acendimento automático; Muito vendido</td><td class="cons">Mesa inox (mancha mais); Grades menos robustas</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Atlas+Monaco+Plus+5+bocas" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>3</td><td><span class="tier eco">ECO</span></td><td><span class="name">Consul CFO4NAR 4B</span></td><td class="price">~R$ 1.100</td><td class="feat">4 bocas · Mesa vidro · Frente Única · Luz interna · Acend. automático</td><td class="pros">Frente Única sem recortes (higiene superior); Luz interna no forno; 4,9★ avaliação excepcional; Design elegante</td><td class="cons">Apenas 4 bocas; Vidro da frente marca impressões digitais</td><td class="stars">⭐ 4,9</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Consul+CFO4NAR" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>4</td><td><span class="tier mid">INTER</span></td><td><span class="name">Atlas Atenas Glass 5B</span></td><td class="price">~R$ 1.100</td><td class="feat">5 bocas · Mesa vidro temperado · Grades 6 apoios · Forno grande · Acend. auto</td><td class="pros">Mesa vidro + 5 bocas pelo melhor preço intermediário; Grades estáveis com 6 apoios; Muito vendido; Visual moderno</td><td class="cons">Grades aço esmaltado (não é ferro fundido); Queimadores sem super-potência</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Atlas+Atenas+Glass" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>5</td><td><span class="tier mid">INTER</span></td><td><span class="name">Electrolux FE4GP 4B <span class="new">PERFCOOK</span></span></td><td class="price">~R$ 1.550</td><td class="feat">4 bocas · PerfectCook360 (cavidade selada) · VaporBake · Mesa vidro · Queimador 3kW</td><td class="pros">PerfectCook reduz tempo cocção em 27%; VaporBake para pães artesanais; 4,9★; Electrolux com RA1000</td><td class="cons">Apenas 4 bocas; Preço intermediário para apenas 4 bocas</td><td class="stars">⭐ 4,9</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+FE4GP" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>6</td><td><span class="tier mid">INTER</span></td><td><span class="name">Consul CFS5NAR 5B</span></td><td class="price">~R$ 1.585</td><td class="feat">5 bocas · Inox · Grades duplas · Forno 96L · Acend. auto · Queimador dupla chama</td><td class="pros">Forno 96L enorme; Grades duplas muito estáveis; 5 bocas; Consul confiável com boa assistência</td><td class="cons">Mesa inox (mancha); Sem vidro temperado na mesa</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Consul+CFS5NAR" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>7</td><td><span class="tier mid">INTER</span></td><td><span class="name">Dako Magister Style 5B <span class="new">FERRO FUNDIDO</span></span></td><td class="price">~R$ 1.780</td><td class="feat">5 bocas · Mesa vidro espelhado · <strong>Trempes ferro fundido</strong> · Forno 100L · Tripla Chama 3,3kW</td><td class="pros">🏆 Melhor CB intermediário; ÚNICO com ferro fundido nesta faixa; Forno 100L — maior da categoria; Tripla Chama; 4,9★; Design premium</td><td class="cons">Vidro espelhado exige limpeza frequente; Trempes pesadas ao remover</td><td class="stars">⭐ 4,9</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Dako+Magister+Style" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>8</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Brastemp BFS5NCR 5B</span></td><td class="price">~R$ 1.800</td><td class="feat">5 bocas · Inox · Grades duplas estáveis · Acend. super-automático · GLP e Gás Natural</td><td class="pros">Acendimento super-automático (o mais rápido do mercado); Grades duplas ultra-estáveis; Brastemp com assistência nacional ampla</td><td class="cons">Inox risca com facilidade; Sem mesa de vidro; Sem ferro fundido</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Brastemp+BFS5NCR" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>9</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Brastemp BFS5VCE 5B <span class="new">COMBO TOP</span></span></td><td class="price">~R$ 2.100</td><td class="feat">5 bocas · Mesa vidro + <strong>Trempes ferro fundido</strong> · Turbo Chama 3.500W · Timer LED · Forno 90L</td><td class="pros">Única combinação vidro + ferro fundido do mercado; Turbo Chama 3.500W — mais potente da lista; Timer digital LED; Forno 90L; Premium de verdade</td><td class="cons">Investimento mais alto; Trempes pesadas</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Brastemp+BFS5VCE" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>10</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Electrolux FE5DC <span class="new">DUPLO FORNO</span></span></td><td class="price">~R$ 3.000</td><td class="feat">5 bocas · <strong>Duplo forno</strong>: gás 144L + elétrico/air fryer 35L · PerfectCook360 · Mesa vidro</td><td class="pros">ÚNICO com duplo forno (144L gás + air fryer elétrico 35L = 179L total); PerfectCook 25% mais rápido; Faz dois pratos simultâneos; Air fryer integrado</td><td class="cons">Investimento alto; Requer ligação elétrica 220V além do gás; Maior dimensão</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+FE5DC" target="_blank">Ver Oferta</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="roi-box">
+    <strong>💰 Por que o premium compensa no fogão</strong>
+    <span>Trempes de <strong>ferro fundido</strong> duram décadas sem deformar — as de aço esmaltado entortam em 3-5 anos de uso intenso. A Electrolux FE4GP com PerfectCook economiza até <strong>30% no consumo de gás</strong> pela câmara selada, o que em 5 anos de uso diário representa R$ 200+ em gás economizado. O duplo forno do FE5DC substitui um forno elétrico separado (que custaria R$ 800+) e uma air fryer (R$ 400+) — o aparelho literalmente se paga em substituições evitadas.</span>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!--  3. MICRO-ONDAS                         -->
+<!-- ════════════════════════════════════════ -->
+<section class="section" id="microondas">
+  <div class="section-header">
+    <span class="section-icon">📡</span>
+    <div>
+      <div class="section-title">Micro-ondas</div>
+      <div class="section-subtitle">Top 10 custo-benefício · 20L a 34L · Dados atualizados março 2026</div>
+    </div>
+  </div>
+  <div class="note">💡 <strong>Potência real vs. nominal:</strong> um micro-ondas de 1.400W aquece 2× mais rápido que um de 700W — o impacto no dia a dia é imenso. Para famílias de 4+: mínimo 900W e 30L. A cavidade em aço inox do Panasonic 4-em-1 dura indefinidamente, versus pintura que descasca em 1-2 anos.</div>
+  <div class="legend">
+    <div class="leg"><div class="dot" style="background:var(--eco)"></div> Econômico (até R$ 530)</div>
+    <div class="leg"><div class="dot" style="background:var(--mid)"></div> Intermediário (R$ 530–800)</div>
+    <div class="leg"><div class="dot" style="background:var(--prem)"></div> Premium (acima R$ 800)</div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Faixa</th><th>Modelo</th><th>Preço Médio</th><th>Capacidade / Potência</th><th>✅ Prós</th><th>❌ Contras</th><th>⭐</th><th>Comprar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="tier eco">ECO</span></td><td><span class="name">Midea MRAS21</span></td><td class="price">~R$ 408</td><td class="feat">20L · 700W · Classe A · Função Eco · Tira Odor · Trava segurança</td><td class="pros">Mais vendido Amazon (13.000+ aval.); 4,7★; Classe A eficiência; Tira Odor; Compacto para qualquer bancada</td><td class="cons">700W lento para porções maiores; 20L limita pratos grandes</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Midea+MRAS21" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>2</td><td><span class="tier eco">ECO</span></td><td><span class="name">Electrolux MTO30 <span class="new">+27K AVAL.</span></span></td><td class="price">~R$ 455</td><td class="feat">20L · 1100W · Menu Kids · Menu Light · Descongelamento · Manter Aquecido</td><td class="pros">🏆 Melhor avaliado do Brasil (4,8★ em 27.000+ avaliações); 1.100W potente; Menu Kids e Light práticos; Electrolux RA1000</td><td class="cons">20L; Sem função Tira Odor neste modelo</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+MTO30" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>3</td><td><span class="tier eco">ECO</span></td><td><span class="name">Philco PMO23BB</span></td><td class="price">~R$ 422</td><td class="feat">20L · 1100W · Menu Fit · Manter Aquecido · Menu Kids · Tira Odor · Pintura Limpa Fácil</td><td class="pros">1.100W pelo preço de 700W; Pintura Limpa Fácil no interior; Menu Fit (saúde) e Kids; Manter Aquecido</td><td class="cons">Botões relatados como rígidos por usuários; 20L apenas</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Philco+PMO23BB" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>4</td><td><span class="tier mid">INTER</span></td><td><span class="name">Consul CMS46AB</span></td><td class="price">~R$ 580</td><td class="feat">32L · 900W · Bloqueio segurança · Luz interna · 6 programas · Design moderno</td><td class="pros">32L grande na faixa intermediária; 6 programas automáticos; Luz interna; 4,9★ avaliação; Design atraente</td><td class="cons">Relatos de ferrugem precoce nos primeiros modelos; 900W moderado</td><td class="stars">⭐ 4,9</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Consul+CMS46AB" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>5</td><td><span class="tier mid">INTER</span></td><td><span class="name">Electrolux MEO44 <span class="new">MELHOR W/R$</span></span></td><td class="price">~R$ 660</td><td class="feat">34L · <strong>1400W</strong> · 9 receitas QR Code · Manter Aquecido · Limpa Fácil · Tira Odor</td><td class="pros">🏆 Melhor relação W/R$ da lista; 34L + 1.400W = aquece 4x mais rápido que modelos 700W; QR Code receitas; Manter Aquecido; Electrolux RA1000</td><td class="cons">Preço intermediário; Tamanho externo maior exige mais espaço</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+MEO44" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>6</td><td><span class="tier mid">INTER</span></td><td><span class="name">LG MS3091BC <span class="new">I-WAVE</span></span></td><td class="price">~R$ 652</td><td class="feat">30L · 900W · I-Wave (aquecimento uniforme) · EasyClean · Eco On (-52% standby)</td><td class="pros">I-Wave exclusiva: aquecimento mais uniforme (menos pontos frios); EasyClean; Eco On reduz 52% energia standby; LG RA1000; Usuário relatou 18 anos de durabilidade de modelo anterior</td><td class="cons">900W moderado; Sem função Manter Aquecido</td><td class="stars">⭐ 4,5</td><td><a class="buy" href="https://www.amazon.com.br/s?k=LG+MS3091BC" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>7</td><td><span class="tier mid">INTER</span></td><td><span class="name">Brastemp BMS46AR</span></td><td class="price">~R$ 800</td><td class="feat">32L · 1500W · 18 receitas pré-prog. · Descongelamento inteligente · Modo silencioso</td><td class="pros">1.500W — segunda maior potência da lista; 18 receitas pré-programadas; Modo silencioso exclusivo; Volume ajustável</td><td class="cons">Preço mais elevado para a capacidade; Sem função especial de limpeza</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Brastemp+BMS46AR" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>8</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Panasonic NN-ST66NBRU <span class="new">ANTIBACTÉRIA</span></span></td><td class="price">~R$ 749</td><td class="feat">34L · 900W · Dupla Refeição (2 pratos simultâneos) · Antibactéria AG 99,9% · Inox interno</td><td class="pros">Dupla Refeição: aquece 2 pratos ao mesmo tempo (exclusivo); Antibactéria AG 99,9% certificado; Inox interno durável; Panasonic reconhecida por longevidade</td><td class="cons">900W — potência moderada para 34L; Preço premium para a potência</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Panasonic+NN-ST66NBRU" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>9</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Midea MXSA35S1</span></td><td class="price">~R$ 850</td><td class="feat">35L · 1000W · Prato Inteligente (reposiciona alça) · Tira Odor · Função Eco · Família 5 pessoas</td><td class="pros">35L — maior capacidade da lista; Prato Inteligente (evita queimaduras ao retirar recipientes); Tira Odor; Eco energia</td><td class="cons">1.000W; Preço alto considerando a potência</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Midea+MXSA35S1" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>10</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Panasonic NN-CD89NBRUN <span class="new">4 EM 1</span></span></td><td class="price">~R$ 1.700</td><td class="feat">30L · 4-em-1: Micro-ondas + Air Fryer + Grill + Convecção · Inox interno · Cavidade completa</td><td class="pros">4 aparelhos num só: substitui air fryer (R$400+), grill e forno convecção; Inox interno vitalício; Sem pintura que descasca; Design premium; Versatilidade máxima</td><td class="cons">R$ 1.700 é alto; Volume útil de apenas 19L (restante é câmara ar fryer)</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Panasonic+NN-CD89NBRUN" target="_blank">Ver Oferta</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="roi-box">
+    <strong>💰 Por que o premium compensa no micro-ondas</strong>
+    <span>A cavidade em aço inox do Panasonic 4-em-1 elimina o problema nº 1 dos modelos baratos: pintura descascando em 12-18 meses. Um modelo econômico que dura 2 anos custa R$ 200-230/ano. O Panasonic NN-CD89NBRUN que dura 8-10 anos custa R$ 170-213/ano — <strong>custo anual similar, mas 4 aparelhos em 1</strong>. Além disso, a tecnologia I-Wave do LG e o descongelamento inteligente da Panasonic reduzem desperdício de alimentos ao eliminar pontos frios e quentes na descongelação.</span>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!--  4. PANELA DE ARROZ                     -->
+<!-- ════════════════════════════════════════ -->
+<section class="section" id="arroz">
+  <div class="section-header">
+    <span class="section-icon">🍚</span>
+    <div>
+      <div class="section-title">Panelas de Arroz Elétricas</div>
+      <div class="section-subtitle">Top 10 custo-benefício · 5 a 10 xícaras · Dados março/abril 2026</div>
+    </div>
+  </div>
+  <div class="note">💡 <strong>O calcanhar de Aquiles:</strong> antiaderente convencional descasca em 6-12 meses com utensílios metálicos. Revestimento <strong>cerâmico</strong> (Oster Bioceramic) dura 4× mais. <strong>5 xícaras:</strong> até 4 pessoas · <strong>10 xícaras:</strong> família maior ou receber visitas.</div>
+  <div class="legend">
+    <div class="leg"><div class="dot" style="background:var(--eco)"></div> Econômico (até R$ 165)</div>
+    <div class="leg"><div class="dot" style="background:var(--mid)"></div> Intermediário (R$ 165–250)</div>
+    <div class="leg"><div class="dot" style="background:var(--prem)"></div> Premium (acima R$ 250)</div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Faixa</th><th>Modelo</th><th>Preço Médio</th><th>Capacidade / Potência</th><th>✅ Prós</th><th>❌ Contras</th><th>⭐</th><th>Comprar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="tier eco">ECO</span></td><td><span class="name">Britânia BPA5BI</span></td><td class="price">~R$ 134</td><td class="feat">5 xícaras · 400W · Antiaderente · Manter Aquecido · Cord. removível · Cesto vapor</td><td class="pros">Preço imbatível; 4,8★ ML; Leve e compacta; Cord. removível para levar à mesa; Cesto vapor incluso</td><td class="cons">Relatos de grudar no fundo com uso prolongado; Capacidade para até 4 pessoas</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Brit%C3%A2nia+BPA5BI" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>2</td><td><span class="tier eco">ECO</span></td><td><span class="name">Philco PH5P Inox</span></td><td class="price">~R$ 142</td><td class="feat">5 xícaras · 400W · Inox · Tampa vidro Visor Glass · Refoga antes de cozinhar · Suporte espátula</td><td class="pros">Inox durável (não plástico); Visor Glass para acompanhar sem abrir; Permite refogar antes do cozimento; Suporte espátula organizado</td><td class="cons">Compradores relatam que o tamanho é menor do que aparece nas fotos</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Philco+PH5P+panela+arroz" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>3</td><td><span class="tier eco">ECO</span></td><td><span class="name">Oster Facile CKSTRC4723</span></td><td class="price">~R$ 149</td><td class="feat">5 xícaras · 400W · Tampa vidro removível · Vaporizador · Cord. removível · Design vermelho</td><td class="pros">Tampa vidro (acompanhar cozimento); Vaporizador para legumes; Design diferenciado vermelho/preto; Multifuncional</td><td class="cons">Tampa vidro pode não segurar respingos em refogados; Material parece mais frágil que concorrentes</td><td class="stars">⭐ 4,5</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Oster+Facile+panela+arroz" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>4</td><td><span class="tier mid">INTER</span></td><td><span class="name">Electrolux RCB50 <span class="new">RITA LOBO</span></span></td><td class="price">~R$ 167</td><td class="feat">7 xícaras · 500W · Tampa vidro refratário · Antiaderente · Vapor simultâneo · Manter Aquecido</td><td class="pros">🏆 Melhor CB geral; 7 xícaras (acima da média); Tampa vidro refratária; 4,8★ Amazon; Cesto vapor; Linha assinada Rita Lobo; Manter Aquecido automático</td><td class="cons">Pode queimar no modo "Manter Aquecido" se deixar por horas demais</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+RCB50" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>5</td><td><span class="tier mid">INTER</span></td><td><span class="name">Mondial Pratic 6i PE-43</span></td><td class="price">~R$ 175</td><td class="feat">6 xícaras · 700W · Inox · GrayStone antiaderente · Manter Aquecido 8h · Kit completo</td><td class="pros">700W potente; GrayStone superior ao antiaderente comum; 8h no modo Manter Aquecido; Inox; Kit completo incluso</td><td class="cons">Tampa removível pode não segurar respingos em refogados</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Mondial+Pratic+6i+PE-43" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>6</td><td><span class="tier mid">INTER</span></td><td><span class="name">Britânia PA10 Prime <span class="new">100% CB</span></span></td><td class="price">~R$ 214</td><td class="feat">10 xícaras · Antiaderente · Manter Aquecido · Cord. removível · Kit completo</td><td class="pros">🏆 100% aprovação em custo-benefício nos reviews Amazon; 10 xícaras para família grande; Praticidade máxima; Britânia confiável</td><td class="cons">Cesta de vapor não inclusa nos modelos compactos; Verificar versão ao comprar</td><td class="stars">⭐ 4,9</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Brit%C3%A2nia+PA10+Prime" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>7</td><td><span class="tier mid">INTER</span></td><td><span class="name">Electrolux ERC10 <span class="new">2 EM 1</span></span></td><td class="price">~R$ 220</td><td class="feat">6 xícaras · 700W · 2-em-1: arroz + vapor simultâneo · Visor Glass · Inox cromado · Auto Manter Aquecido</td><td class="pros">Arroz e legumes no vapor ao mesmo tempo (2-em-1 real); Visor Glass; Acabamento inox cromado sofisticado; Desligamento e Manter Aquecido automáticos</td><td class="cons">Potência insuficiente para refogar antes do cozimento; Preço acima da média</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+ERC10" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>8</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Mondial Pratic Rice 10i PE-42</span></td><td class="price">~R$ 250</td><td class="feat">10 xícaras · 700W · Robusto · Manter Aquecido · 3.739 avaliações · Alta durabilidade</td><td class="pros">Robustez e durabilidade excepcionais (3.739 avaliações consistentes); 10 xícaras; A "fusca" das panelas elétricas; Custo mensal de apenas R$ 8 usando 1×/dia</td><td class="cons">Design mais básico; Sem recursos avançados</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Mondial+Pratic+Rice+10i+PE-42" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>9</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Electrolux ECC20 <span class="new">TIMER 12H</span></span></td><td class="price">~R$ 320</td><td class="feat">10 xícaras · Painel LED digital · <strong>Timer 12h</strong> · 4 funções · Inox · 4 funções pré-prog.</td><td class="pros">ÚNICO do mercado com timer programável de até 12h; Painel LED digital; 4 funções: Rápido, Lento, Sopa, Manter Aquecido; Inox premium; Programa o arroz para o horário que quiser</td><td class="cons">Potência pode ser insuficiente para refogar; Investimento mais alto para o conceito</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+ECC20" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>10</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Oster Bioceramic <span class="new">CERÂMICA</span></span></td><td class="price">~R$ 380</td><td class="feat">10 xícaras · <strong>Revestimento cerâmico natural</strong> · Sem PTFE/PFOA · Resistente a riscos · Livre de toxinas</td><td class="pros">Cerâmica 4× mais durável que antiaderente convencional; Resistente a utensílios metálicos; Livre de PTFE e PFOA (toxinas); Limpeza simples; Durabilidade muito superior</td><td class="cons">Preço mais alto; Cerâmica pode rachar se cair</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Oster+Bioceramic+panela+arroz" target="_blank">Ver Oferta</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="roi-box">
+    <strong>💰 Por que o premium compensa na panela de arroz</strong>
+    <span>Um modelo de R$ 135 com antiaderente que descasca em 1 ano custa <strong>R$ 135/ano</strong>. O Oster Bioceramic (R$ 380) com cerâmica 4× mais durável dura ~4 anos: <strong>R$ 95/ano</strong>. Além da economia, a cerâmica é livre de PTFE/PFOA — materiais que quando aquecidos em excesso liberam compostos potencialmente nocivos. O ECC20 com timer resolve um problema real: programar o arroz para ficar pronto exatamente na hora que você chega em casa.</span>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!--  5. LAVA-LOUÇAS                         -->
+<!-- ════════════════════════════════════════ -->
+<section class="section" id="lava">
+  <div class="section-header">
+    <span class="section-icon">🍽️</span>
+    <div>
+      <div class="section-title">Máquinas de Lavar Louça</div>
+      <div class="section-subtitle">Top 10 custo-benefício · 8 a 14 serviços · ROI comprovado em economia de água</div>
+    </div>
+  </div>
+  <div class="note">💡 Lavagem manual usa ~117L por sessão equivalente. Uma lava-louça eficiente usa <strong>8-13L por ciclo</strong> — economia de até <strong>40.000 litros de água por ano</strong>. O ROI médio de payback é de 4 anos. Após isso, tudo é economia pura.</div>
+  <div class="legend">
+    <div class="leg"><div class="dot" style="background:var(--eco)"></div> Econômico (até R$ 2.500)</div>
+    <div class="leg"><div class="dot" style="background:var(--mid)"></div> Intermediário (R$ 2.500–4.500)</div>
+    <div class="leg"><div class="dot" style="background:var(--prem)"></div> Premium (acima R$ 4.500)</div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Faixa</th><th>Modelo</th><th>Preço Médio</th><th>Serviços / Água/ciclo</th><th>✅ Prós</th><th>❌ Contras</th><th>⭐</th><th>Comprar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="tier eco">ECO</span></td><td><span class="name">Midea DWA08B1</span></td><td class="price">~R$ 1.700</td><td class="feat">8 serviços · <strong>8L/ciclo</strong> · 0,72 kWh · Modo Eco · Interior inox · Design preto</td><td class="pros">Menor consumo de água da lista (8L/ciclo); Mais acessível da lista; Interior inox; Design preto moderno; Silenciosa</td><td class="cons">8 serviços limita para famílias maiores; Poucas funções extras; 4,3★ (abaixo da média)</td><td class="stars">⭐ 4,3</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Midea+DWA08B1" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>2</td><td><span class="tier eco">ECO</span></td><td><span class="name">Brastemp BLF08BS <span class="new">LAVA E SECA 50'</span></span></td><td class="price">~R$ 1.905</td><td class="feat">8 serviços · Lava & Seca 50 min · Jatos alta pressão · 5 ciclos · Interior inox · Slim</td><td class="pros">🏆 Melhor CB econômico; Lava E seca em 50 minutos (o mais rápido disponível); Jatos alta pressão sem pré-lavagem; 4,6★; 5× menos água que mão</td><td class="cons">8 serviços; Consome 25L no ciclo Dia a Dia (dado medido — mais que o esperado)</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Brastemp+BLF08BS" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>3</td><td><span class="tier eco">ECO</span></td><td><span class="name">Electrolux LL08B</span></td><td class="price">~R$ 2.000</td><td class="feat">8 serviços · 13L/ciclo · 7 programas · Higienizar 70°C · Classe A eficiência · Silenciosa</td><td class="pros">7 programas incluindo Higienizar 70°C; Mais silenciosa da faixa ECO; Classe A; Electrolux RA1000 suporte</td><td class="cons">8 serviços; Consome um pouco mais (1,25 kWh) que concorrentes</td><td class="stars">⭐ 4,5</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+LL08B" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>4</td><td><span class="tier mid">INTER</span></td><td><span class="name">Electrolux LS08E <span class="new">INOX + SECA</span></span></td><td class="price">~R$ 2.750</td><td class="feat">8 serviços · Lava & Seca 50 min · Interior inox espelhado · Blue Touch · Acquajet</td><td class="pros">Inox espelhado (mais durável e sofisticado); Blue Touch programação com porta fechada; Acquajet mantém louças úmidas sem secar; 4,6★; Silenciosa</td><td class="cons">Requer líquido secante para resultado ideal; Painel touch precisa de cuidado</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+LS08E" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>5</td><td><span class="tier mid">INTER</span></td><td><span class="name">Midea DWA14P1 <span class="new">14 SERV. P/ PREÇO DE 8</span></span></td><td class="price">~R$ 3.200</td><td class="feat"><strong>14 serviços</strong> · 6 programas · Modo Eco · Intensivo · Interior inox · Prateleira 3 níveis ajustáveis</td><td class="pros">🏆 14 serviços pelo preço de 8-10 da concorrência; Prateleira ajustável em 3 níveis (única da lista nesta faixa); Interior inox; Modo Eco eficiente</td><td class="cons">Marca com reputação pós-venda inferior à Electrolux/Brastemp; Poucos reviews até o momento</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Midea+DWA14" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>6</td><td><span class="tier mid">INTER</span></td><td><span class="name">Electrolux LL14P</span></td><td class="price">~R$ 3.466</td><td class="feat">14 serviços · Blue Touch · Acquajet · Prateleiras versáteis · Eficiência A · Silenciosa</td><td class="pros">Blue Touch intuitivo; Acquajet (acumula louças sem secar); 4,9★ — melhor avaliação da lista; Silenciosa; Marca top</td><td class="cons">Painel touch sensível; Preço médio-alto para 14 serviços</td><td class="stars">⭐ 4,9</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+LL14P" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>7</td><td><span class="tier mid">INTER</span></td><td><span class="name">Brastemp BLF10BR <span class="new">SLIM 44CM</span></span></td><td class="price">~R$ 3.700</td><td class="feat">10 serviços · <strong>Slim 44,8cm largura</strong> · Smart Sensor · 0,74 kWh · Menor consumo de energia · Higienizar 70°C</td><td class="pros">SLIM (44,8cm) cabe em cozinhas compactas com interior grande; Smart Sensor ajusta ciclo automaticamente; Menor consumo de energia da lista (0,74 kWh); Higienizar 70°C</td><td class="cons">10 serviços apenas; Preço premium para capacidade intermediária</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Brastemp+BLF10BR" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>8</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Electrolux LL10X <span class="new">HIGIENIZAR COMPRAS</span></span></td><td class="price">~R$ 4.000</td><td class="feat">10 serviços · Higienizar Compras (frutas/vegetais) · Higienizar 70°C · Blue Touch · Função Auto Sente</td><td class="pros">Higienizar Compras exclusiva (frutas, verduras e embalagens); Higienizar 70°C; Auto Sente; Blue Touch; Electrolux RA1000</td><td class="cons">10 serviços para o preço premium; Interior menor que modelos de 14</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+LL10X" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>9</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Electrolux LL14X <span class="new">TOP DE LINHA</span></span></td><td class="price">~R$ 5.000</td><td class="feat">14 serviços · <strong>9,5L/ciclo</strong> · Higienizar Compras · Turbo 30 min · Auto Sente · Blue Touch · Inox</td><td class="pros">Melhor desempenho do mercado; 9,5L/ciclo (igual a modelos de 8 serviços!); Turbo 30 min; Higienizar Compras; Auto Sente; 14 serviços; 4,8★</td><td class="cons">Maior investimento da lista</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+LL14X" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>10</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Samsung DW60DG550FSRBZ <span class="new">46 dB</span></span></td><td class="price">~R$ 5.500</td><td class="feat">14 serviços · <strong>46 dB (nível biblioteca)</strong> · Abertura automática porta · Sensor vazamento · Inox</td><td class="pros">Mais silenciosa do mercado (46 dB — mesmo volume de biblioteca); Abertura automática ao final (seca a vapor); Sensor anti-vazamento; Prateleiras extra-ajustáveis</td><td class="cons">Poucos reviews no Brasil (marca novata no segmento); Ciclo completo mais longo; Peças de reposição importadas</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Samsung+DW60DG550FSRBZ" target="_blank">Ver Oferta</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="roi-box">
+    <strong>💰 Por que o premium compensa na lava-louças — o ROI mais claro da lista</strong>
+    <span>Com tarifa média de R$ 12/m³ (água + esgoto), uso diário gera economia de <strong>R$ 480/ano em água</strong> versus lavagem manual. Em 5 anos: <strong>R$ 2.400 de economia</strong>. Somando 182 horas/ano poupadas (30 min/dia × 365 dias), o payback de uma BLF08BS (R$ 1.905) ocorre em menos de 4 anos, com todos os anos seguintes sendo lucro puro. O premium da LL14X (R$ 5.000) ainda usa <strong>9,5L/ciclo com 14 serviços</strong> — o mesmo consumo de modelos de 8 serviços. Em famílias grandes, a eficiência por serviço é incomparável.</span>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!--  6. COLCHÃO                             -->
+<!-- ════════════════════════════════════════ -->
+<section class="section" id="colchao">
+  <div class="section-header">
+    <span class="section-icon">🛏️</span>
+    <div>
+      <div class="section-title">Colchões</div>
+      <div class="section-subtitle">Top 10 custo-benefício · Espuma, Molas Ensacadas e Híbrido</div>
+    </div>
+  </div>
+  <div class="note">💡 <strong>Guia de densidade:</strong> D28-D33 (até 100kg) · D45 (até 120-150kg) · D60 (acima de 150kg). Molas ensacadas eliminam até 80% da transferência de movimento — essencial para casais. Sempre verifique a garantia: a Ortobom em lojas online oferece apenas 90 dias.</div>
+  <div class="warn-box">⚠️ <strong>Atenção importante:</strong> A Ortobom vende suas garantias estendidas via loja física. Compras online (Amazon, ML) frequentemente têm garantia de apenas 90 dias — significativamente abaixo do padrão de 3-10 anos prometido nas lojas físicas. Confirme antes de comprar.</div>
+  <div class="legend">
+    <div class="leg"><div class="dot" style="background:var(--eco)"></div> Econômico (até R$ 1.400)</div>
+    <div class="leg"><div class="dot" style="background:var(--mid)"></div> Intermediário (R$ 1.400–3.200)</div>
+    <div class="leg"><div class="dot" style="background:var(--prem)"></div> Premium (acima R$ 3.200)</div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Faixa</th><th>Modelo</th><th>Preço Médio (Queen)</th><th>Tipo / Densidade</th><th>✅ Prós</th><th>❌ Contras</th><th>⭐</th><th>Comprar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="tier eco">ECO</span></td><td><span class="name">Castor Sleep Max D33</span></td><td class="price">R$ 700–1.000</td><td class="feat">Espuma D33 · Dupla face · Antifúngico · Antiácaro · Antialérgico · INMETRO · 100kg/pessoa</td><td class="pros">4,8★ Mercado Livre; INMETRO certificado; Dupla face (aumenta vida útil); Marca tradicional com ISO 9001; Antiácaro e antialérgico</td><td class="cons">D33 perde suporte mais rapidamente que D45; Sem pillow top; Sem recursos extras</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Castor+Sleep+Max+D33" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>2</td><td><span class="tier eco">ECO</span></td><td><span class="name">Ortobom Iso 150 D45</span></td><td class="price">R$ 850–1.100</td><td class="feat">Espuma D45 · Firme · 120-150kg/pessoa · Antiácaro · Antialérgico · Ortopédico</td><td class="pros">D45 firme e durável — ideal para pessoas acima de 100kg; 120-150kg suportados; Marca estabelecida; Preço acessível para D45</td><td class="cons">⚠️ Garantia online 90 dias; Pode ser muito firme para pessoas leves; Sem pillow top</td><td class="stars">⭐ 4,5</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Ortobom+D45" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>3</td><td><span class="tier eco">ECO</span></td><td><span class="name">BF Colchões D33</span></td><td class="price">R$ 900–1.100</td><td class="feat">Espuma D33 · Embalado a vácuo · 100kg · Todos os tamanhos (solt. → king) · 12 meses garantia</td><td class="pros">Embalado a vácuo (fácil transporte até apartamento); Todos os tamanhos disponíveis; Boa relação preço-qualidade para a proposta</td><td class="cons">Garantia de apenas 12 meses; Espuma relativamente simples; Menos tecnologia que concorrentes</td><td class="stars">⭐ 4,4</td><td><a class="buy" href="https://www.amazon.com.br/s?k=BF+Colch%C3%B5es+D33" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>4</td><td><span class="tier mid">INTER</span></td><td><span class="name">Guldi Original Firme <span class="new">215 MOLAS/M²</span></span></td><td class="price">R$ 1.450–1.700</td><td class="feat">Molas ensacadas · <strong>215 molas/m²</strong> · 110kg/pessoa · 5 anos garantia · 100 noites teste · 25cm altura</td><td class="pros">🏆 Melhor CB intermediário; 215 molas/m² (média do mercado é 150); 5 anos de garantia real; 100 noites de teste; 4,9★ — melhor nota da lista; Transferência de movimento mínima para casais</td><td class="cons">Marca mais nova (menos reconhecimento); Firme — pode não agradar quem prefere macio</td><td class="stars">⭐ 4,9</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Guldi+colchao+firme" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>5</td><td><span class="tier mid">INTER</span></td><td><span class="name">BF Premium Sleep</span></td><td class="price">R$ 1.800–2.500</td><td class="feat">Molas ensacadas + Pillow Top · 38cm altura · 120kg/pessoa · 5 anos garantia · Intermediário firme</td><td class="pros">38cm de altura (sensação premium); Pillow Top incorporado; 120kg/pessoa; 5 anos garantia; Boa relação altura/preço</td><td class="cons">Marca ainda construindo reputação; Menos reviews que concorrentes</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=BF+Premium+Sleep+colchao" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>6</td><td><span class="tier mid">INTER</span></td><td><span class="name">Ortobom Freedom SuperPocket</span></td><td class="price">R$ 2.000–2.800</td><td class="feat">Molas SuperPocket · Pillow Top viscoelástico · 150kg/pessoa · No Turn · Evo Care Vital · Bamboo Kun</td><td class="pros">Molas SuperPocket individualmente ensacadas; Pillow Top viscoelástico; Evo Care Vital (aloe vera + vitamina E); Bamboo Kun antibacteriano; Suporta 150kg; No Turn</td><td class="cons">⚠️ Garantia online pode ser apenas 90 dias; Confirmar na loja física</td><td class="stars">⭐ 4,5</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Ortobom+Freedom+SuperPocket" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>7</td><td><span class="tier mid">INTER</span></td><td><span class="name">Castor Silver Star Pocket</span></td><td class="price">R$ 2.300–2.800</td><td class="feat">Molas Pocket® (tecnologia suíça) · 230 molas/m² · Pillow Top viscoelástico · No Turn · Evo Care</td><td class="pros">230 molas/m² — maior densidade de molas da lista; Tecnologia Pocket suíça; Pillow Top; No Turn; Castor com ISO 9001 e tradição</td><td class="cons">3 anos de garantia (menor que Guldi e Emma); Pode ser muito firme para biotipos mais leves</td><td class="stars">⭐ 4,3</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Castor+Silver+Star+Pocket" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>8</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Emma Original <span class="new">PROTESTE 2024</span></span></td><td class="price">R$ 2.300–2.800</td><td class="feat">Airgocell® · 7 zonas corporais · 10 anos garantia · 100 noites teste · OEKO-TEX · Certificado PROTESTE</td><td class="pros">Melhor do Teste PROTESTE 2024; 4,8★ em 4.289 avaliações; 7 zonas de suporte corporal; Airgocell® respirável; 10 anos de garantia REAL; 100 noites de teste sem custo; OEKO-TEX (sem substâncias nocivas)</td><td class="cons">Preço no limite intermediário/premium; Embalagem a vácuo pode demorar 48h para expandir completamente</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Emma+colchao+original" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>9</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Emma Premium Hybrid 2.0</span></td><td class="price">R$ 3.900–4.500</td><td class="feat">Molas AirFlex® + espuma · 7 zonas · 10 anos garantia · 100 noites · Hybrid máximo conforto</td><td class="pros">Molas AirFlex + espuma (melhor de dois mundos); 7 zonas específicas; 10 anos garantia; 100 noites teste; Adaptação perfeita ao biotipo; Emma com tecnologia alemã comprovada</td><td class="cons">Alto investimento; Para quem já dormiu bem e quer o máximo</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Emma+Premium+Hybrid+colchao" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>10</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">King Koil Tungsten <span class="new">200KG/PESSOA</span></span></td><td class="price">R$ 3.500–4.500</td><td class="feat">Molas ensacadas · <strong>200kg/pessoa</strong> · ICA endorsed · 100+ anos de tradição · Tecnologia térmica</td><td class="pros">ÚNICO que suporta 200kg/pessoa — sem concorrência neste quesito; International Chiropractors Association (ICA) endossado; 100+ anos de tradição; Durabilidade excepcional comprovada; Casal com grande diferença de peso: ideal</td><td class="cons">Alto investimento; Disponível apenas em lojas especializadas; Envio limitado</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=King+Koil+Tungsten+colchao" target="_blank">Ver Oferta</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="roi-box">
+    <strong>💰 Por que o premium compensa no colchão — e o custo por noite muda tudo</strong>
+    <span>Dormimos 1/3 da vida. Um colchão D33 de R$ 700 que dura 4 anos custa <strong>R$ 0,48/noite</strong>. O Emma Original de R$ 2.500 que dura 10 anos custa <strong>R$ 0,68/noite</strong> — diferença de apenas R$ 0,20/noite, mas com 7 zonas de suporte, 10 anos de garantia e certificação PROTESTE. Molas ensacadas reduzem até 80% os despertares noturnos causados pelo parceiro — impacto direto na produtividade do dia seguinte. O colchão é, juntamente com a geladeira, o produto desta lista com maior impacto na saúde e qualidade de vida.</span>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!--  7. PRENSA FRANCESA                     -->
+<!-- ════════════════════════════════════════ -->
+<section class="section" id="prensa">
+  <div class="section-header">
+    <span class="section-icon">☕</span>
+    <div>
+      <div class="section-title">Cafeteiras Prensa Francesa</div>
+      <div class="section-subtitle">Top 10 custo-benefício · Sem energia elétrica · Atualizado março 2026</div>
+    </div>
+  </div>
+  <div class="note">💡 <strong>Vidro borossilicato:</strong> resiste a choques térmicos, permite visualizar a infusão, mas quebradiço. <strong>Aço inox:</strong> virtualmente inquebrável, mantém temperatura 3-4°C mais alta na infusão (extração superior). <strong>Moagem grossa</strong> (tamanho de sal grosso) é essencial — moagem fina entope o filtro e deixa o café amargo.</div>
+  <div class="legend">
+    <div class="leg"><div class="dot" style="background:var(--eco)"></div> Econômico (até R$ 120)</div>
+    <div class="leg"><div class="dot" style="background:var(--mid)"></div> Intermediário (R$ 120–280)</div>
+    <div class="leg"><div class="dot" style="background:var(--prem)"></div> Premium (acima R$ 280)</div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Faixa</th><th>Modelo</th><th>Preço Médio</th><th>Capacidade / Material</th><th>✅ Prós</th><th>❌ Contras</th><th>⭐</th><th>Comprar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="tier eco">ECO</span></td><td><span class="name">Mimo Style 350ml</span></td><td class="price">~R$ 30</td><td class="feat">350ml · Vidro borossilicato · -20°C a 180°C · Filtro metal · Polipropileno resistente</td><td class="pros">Preço mínimo do mercado; 4,3★ em 8.800+ avaliações Amazon; Suporta temperaturas extremas; Vidro borossilicato resistente; Porta de entrada ideal para o método</td><td class="cons">Corpo plástico (menos elegante); Vidro mais fino; Vedação do êmbolo perde eficiência com o tempo</td><td class="stars">⭐ 4,3</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Mimo+Style+prensa+francesa+350ml" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>2</td><td><span class="tier eco">ECO</span></td><td><span class="name">Mimo Style 600ml</span></td><td class="price">~R$ 55</td><td class="feat">600ml · Vidro borossilicato · Ideal 2-3 pessoas · Fácil limpeza · Mantém quente 2h</td><td class="pros">600ml para 2-3 pessoas; Limpeza com água corrente; Mantém temperatura 2h; Também serve para chá; Muito popular</td><td class="cons">Corpo plástico; Vidro mais fino que marcas premium; Durabilidade médio-longo prazo menor</td><td class="stars">⭐ 4,5</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Mimo+Style+prensa+francesa+600ml" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>3</td><td><span class="tier eco">ECO</span></td><td><span class="name">Tramontina 600ml</span></td><td class="price">~R$ 90</td><td class="feat">600ml · Vidro borossilicato · Peneira fina · Fabricada em Portugal · Suporte protetor plástico</td><td class="pros">Marca nacional reconhecida; Suporte plástico protege o vidro de quedas leves; Peneira fina (café limpo); Fácil encontrar peças; Ampla distribuição</td><td class="cons">Malha do filtro pode desgastar após meses de uso intenso</td><td class="stars">⭐ 4,4</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Tramontina+prensa+francesa" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>4</td><td><span class="tier mid">INTER</span></td><td><span class="name">Bodum Brazil 1L</span></td><td class="price">~R$ 140</td><td class="feat">1L · Vidro borossilicato · Sistema filtro 3 partes · Marca global desde 1944 · Lava-louças</td><td class="pros">Bodum: referência mundial em French Press desde 1944; 1L para família; Sistema de filtro 3 partes eficiente; Lava-louças compatível; 4,5★</td><td class="cons">Plástico na alça e tampa; Não mantém temperatura por muito tempo (vidro simples)</td><td class="stars">⭐ 4,5</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Bodum+Brazil+1L" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>5</td><td><span class="tier mid">INTER</span></td><td><span class="name">Bialetti Preziosa 350ml</span></td><td class="price">~R$ 200</td><td class="feat">350ml · Inox 18/10 + vidro borossilicato · Alça nylon anti-calor · Fácil montar/desmontar</td><td class="pros">🏆 Melhor filtro do ranking — café surpreendentemente limpo; Inox 18/10 (qualidade cutelaria); Alça nylon segura mesmo quente; Design Bialetti icônico; Desmontagem intuitiva</td><td class="cons">Apenas 350ml (individual/casal); Relatos que a tampa pode não encaixar perfeitamente</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Bialetti+Preziosa+350ml" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>6</td><td><span class="tier mid">INTER</span></td><td><span class="name">Hamilton Beach 1L <span class="new">3 ANOS GAR.</span></span></td><td class="price">~R$ 175</td><td class="feat">1L · Inox · Marcações de nível · <strong>3 anos de garantia</strong> · Espumador incluso · Família</td><td class="pros">🏆 Melhor CB intermediário; 3 anos de garantia (único da lista); Espumador para cappuccino incluso; 1L; Marcações precisas de nível; Resistente; Funcional</td><td class="cons">Inox não permite ver a infusão; Design mais funcional do que elegante</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Hamilton+Beach+prensa+francesa+1L" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>7</td><td><span class="tier mid">INTER</span></td><td><span class="name">Secura 1L Inox 304 <span class="new">3 CAMADAS</span></span></td><td class="price">~R$ 260</td><td class="feat">1L · Inox 304 dupla parede · <strong>Filtro 3 camadas + 2 telas extras</strong> · 4 cores · Cabo toque frio · Lava-louças</td><td class="pros">Filtro 3 camadas + 2 telas (café mais limpo da lista); Dupla parede (temperatura mais estável); Cabo toque frio — segurança real; 4 cores disponíveis; 34.900+ avaliações globais</td><td class="cons">Preço alto para o segmento; Não permite ver infusão (inox)</td><td class="stars">⭐ 4,5</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Secura+prensa+francesa+1L" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>8</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Bialetti French Press 1L Inox</span></td><td class="price">~R$ 400</td><td class="feat">1L · Inox 18/10 completo · Alça nylon · Ícone italiano · Design clássico · Sem BPA</td><td class="pros">Inox 18/10 completo — durabilidade de décadas; 1L para família; Ícone do café italiano; Alça nylon resistente ao calor; Extração de óleos superior ao vidro</td><td class="cons">Custo elevado para prensa francesa; Sem visualização da infusão</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Bialetti+French+Press+1L" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>9</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Bodum Chambord</span></td><td class="price">~R$ 500</td><td class="feat">1L · Inox dourado · Vidro borossilicato · Ícone design desde 1950s · Versão clássica</td><td class="pros">Ícone do design desde os anos 1950; Acabamento inox dourado único; Presente perfeito; Qualidade construtiva incomparável; Collectible</td><td class="cons">Investimento premium; Vidro central ainda frágil; Alça plástico (mesmo na versão premium)</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Bodum+Chambord+prensa+francesa" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>10</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Stanley Classic Stay-Hot 1,4L <span class="new">VITALÍCIA</span></span></td><td class="price">~R$ 600</td><td class="feat">1,4L · Inox duplo vácuo · Quente <strong>4-6h</strong> · Gelado 9h · Garantia <strong>vitalícia</strong> · Anti-BPA</td><td class="pros">Mantém quente por 4-6h (única da lista); Mantém gelado 9h; 1,4L — maior da lista; Garantia vitalícia real; Inox virtualmente indestrutível; Perfeita para camping, escritório, viagens</td><td class="cons">Alto investimento; Inox total não permite ver infusão</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Stanley+prensa+francesa+Stay-Hot" target="_blank">Ver Oferta</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="roi-box">
+    <strong>💰 Por que o premium compensa na prensa francesa</strong>
+    <span>Um modelo de vidro de R$ 55 que quebra em 8 meses custa R$ 82/ano. Um inox de R$ 260 (Secura) que dura 5+ anos custa R$ 52/ano — <strong>mais barato no longo prazo</strong>. Para quem usa grãos especiais (R$ 40-80/250g), a diferença de temperatura entre inox e vidro na infusão é percebível na xícara: modelos de vidro perdem 15-20°C em 4 minutos de infusão vs. 3-5°C nos de inox — resultando em extração incompleta e café amargo. A garantia vitalícia da Stanley justifica sozinha o investimento: é o único da lista que literalmente nunca precisará ser reposto.</span>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!--  8. PURIFICADOR DE ÁGUA COM GELAGEM     -->
+<!-- ════════════════════════════════════════ -->
+<section class="section" id="purificador">
+  <div class="section-header">
+    <span class="section-icon">💧</span>
+    <div>
+      <div class="section-title">Purificadores de Água com Gelagem</div>
+      <div class="section-subtitle">Top 10 custo-benefício · Dados de filtragem INMETRO verificados 2026</div>
+    </div>
+  </div>
+  <div class="note">💡 <strong>Placa Peltier:</strong> silenciosa, compacta, 0,2L/h gelada — satisfatória para 1-2 pessoas. <strong>Compressor:</strong> gela 1-2,1L/h, chega a 5°C — indispensável para famílias grandes ou regiões quentes. <strong>Filtragem Classe A</strong> = elimina bactérias, vírus e parasitas (a máxima exigência do INMETRO).</div>
+  <div class="legend">
+    <div class="leg"><div class="dot" style="background:var(--eco)"></div> Econômico (até R$ 600)</div>
+    <div class="leg"><div class="dot" style="background:var(--mid)"></div> Intermediário (R$ 600–950)</div>
+    <div class="leg"><div class="dot" style="background:var(--prem)"></div> Premium (acima R$ 950)</div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Faixa</th><th>Modelo</th><th>Preço Médio</th><th>Sistema / Filtragem</th><th>✅ Prós</th><th>❌ Contras</th><th>⭐</th><th>Comprar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="tier eco">ECO</span></td><td><span class="name">Colormaq Acqua Eletrônico</span></td><td class="price">~R$ 422</td><td class="feat">Peltier · 0,8L reservatório · Filtro carvão 4000L/6m · Bivolt · Classe C</td><td class="pros">Menor preço com refrigeração; 100% aprovação em CB nos reviews (13/13 usuários); Instalação muito fácil; Apenas 2 relatos de defeito em 82 reviews</td><td class="cons">Classe C (sem eficiência bacteriológica); Botão exige pressão contínua; Capacidade limitada para famílias</td><td class="stars">⭐ 4,5</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Colormaq+purificador+agua+eletronico" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>2</td><td><span class="tier eco">ECO</span></td><td><span class="name">IBBL E-Due Equilibrium <span class="new">7 ETAPAS</span></span></td><td class="price">~R$ 450</td><td class="feat">Peltier · 7 etapas purificação · Regula pH · 3 temperaturas · Funciona sem energia · 4,7★ 1000+ avaliações</td><td class="pros">7 etapas de purificação (regula pH da água); Funciona sem energia (modo natural); 4,7★ em 1.000+ avaliações; Slim elegante; pH equilibrado melhora sabor</td><td class="cons">Classe C; Produção gelada baixa (Peltier); Refil a cada 6 meses</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=IBBL+E-Due+Equilibrium" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>3</td><td><span class="tier eco">ECO</span></td><td><span class="name">Consul CPB34AS <span class="new">CLASSE A</span></span></td><td class="price">~R$ 550</td><td class="feat">Peltier · <strong>Filtragem Classe A</strong> · Eficiência bacteriológica · 0,2L/h gelada · Refil fácil troca</td><td class="pros">🏆 Melhor CB geral — único Classe A na faixa ECO; Elimina bactérias e vírus (bacteriológica certificada); Muito vendido e bem avaliado; Consul com ampla assistência técnica</td><td class="cons">0,2L/h gelada é pouco para família grande no verão; Botão pode travar (reclamação histórica Consul); Peltier</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Consul+CPB34AS" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>4</td><td><span class="tier mid">INTER</span></td><td><span class="name">Consul CPB33AFVNA <span class="new">TOUCH A</span></span></td><td class="price">~R$ 489</td><td class="feat">Peltier · Classe A · Touch · 99% bactérias · Partículas 60× menor que grão de areia · 3 temps</td><td class="pros">Classe A + Touch elegante; 99% eficiência bacteriológica; Partículas 60× menores que grão de areia filtradas; Alerta luminoso refil; 5★ avaliação</td><td class="cons">Peltier — produção gelada moderada; Botão touch precisa de limpeza constante</td><td class="stars">⭐ 5,0</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Consul+CPB33AFVNA" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>5</td><td><span class="tier mid">INTER</span></td><td><span class="name">Electrolux PE12B <span class="new">COMPRESSOR</span></span></td><td class="price">~R$ 600</td><td class="feat">Compressor · 3 temperaturas · Touch LED · Natural/Fresca/Gelada · Refil 6m · Bivolt</td><td class="pros">🏆 Mais vendido Amazon; Compressor = gela mais rápido que Peltier; Painel touch LED intuitivo; Electrolux RA1000; Muito bem avaliado</td><td class="cons">Compressor com capacidade média — não atende alto fluxo; Refil a cada 6 meses</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+PE12B" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>6</td><td><span class="tier mid">INTER</span></td><td><span class="name">Colormaq Premium <span class="new">1,02L/H GELADA</span></span></td><td class="price">~R$ 670</td><td class="feat">Compressor · <strong>2,3L reservatório</strong> · 1,02L/h gelada · 7 níveis temperatura · 5,5°C em 40min</td><td class="pros">Compressor pelo preço de Peltier; Maior reservatório da lista (2,3L); 1,02L/h gelada; 7 níveis de temperatura; 5,5°C em 40 minutos — excelente para verão</td><td class="cons">Marca menos estabelecida no pós-venda; Poucos reviews até o momento</td><td class="stars">⭐ 4,4</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Colormaq+Premium+purificador+compressor" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>7</td><td><span class="tier mid">INTER</span></td><td><span class="name">Latina PA355 <span class="new">2,1L/H</span></span></td><td class="price">~R$ 750</td><td class="feat">Compressor · <strong>2,1L/h gelada — maior da lista</strong> · Termostato 5-12°C · 2L reservatório</td><td class="pros">Maior produção de água gelada da lista (2,1L/h); Termostato regulável de 5°C a 12°C; Compressor potente; 2L reservatório; Ideal para escritórios</td><td class="cons">Reputação pós-venda (Reclame Aqui) inferior a IBBL e Consul; Mais barulhento</td><td class="stars">⭐ 4,3</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Latina+PA355" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>8</td><td><span class="tier mid">INTER</span></td><td><span class="name">IBBL E-Due Freedom</span></td><td class="price">~R$ 600</td><td class="feat">Peltier · Classe C upgrade · Eficiência bacteriológica · 800ml gelada · Branco/Grafite</td><td class="pros">Design sofisticado em 2 cores; Eficiência bacteriológica certificada; IBBL com RA1000 no Reclame Aqui — melhor pós-venda da lista; 5★ avaliação inicial</td><td class="cons">Novo — poucos reviews; Peltier; Classe C na versão padrão</td><td class="stars">⭐ 5,0</td><td><a class="buy" href="https://www.amazon.com.br/s?k=IBBL+E-Due+Freedom" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>9</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">IBBL FR600 Speciale <span class="new">25 USUÁRIOS</span></span></td><td class="price">~R$ 870</td><td class="feat">Compressor · 2,18L reservatório · 1,1L/h gelada · Até 25 usuários · 60L/h vazão · Nanobiote antimicrobiana · RA1000</td><td class="pros">Atende até 25 usuários; Nanobiote antimicrobiana exclusiva; IBBL com RA1000 (melhor suporte da categoria); 1,1L/h gelada; Residencial ou comercial; 4,6★</td><td class="cons">Alto investimento; Mais barulhento (compressor potente)</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=IBBL+FR600+Speciale" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>10</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Consul CPB36AB <span class="new">TRÍADE COMPLETA</span></span></td><td class="price">~R$ 1.280</td><td class="feat">Compressor · <strong>Classe A + Bacteriológica + Compressor</strong> · Refil 9 meses · 4,9 kWh/mês</td><td class="pros">🏆 ÚNICO com Classe A + eficiência bacteriológica + compressor (tríade completa); Refil dura 9 meses vs 6 dos concorrentes (menor custo manutenção); Menor consumo de energia entre compressores (4,9 kWh/mês); Ideal para quem prioriza saúde + conforto</td><td class="cons">Alto investimento inicial; Refil mais caro na reposição</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Consul+CPB36AB" target="_blank">Ver Oferta</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="roi-box">
+    <strong>💰 Por que o premium compensa no purificador — custo total de 3 anos</strong>
+    <span>Colormaq Acqua (R$ 422) + 6 refis de R$ 35 + energia R$ 90 = <strong>R$ 722 em 3 anos</strong>. Consul CPB36AB (R$ 1.280) + 4 refis de R$ 70 (dura 9 meses) + energia R$ 53 = <strong>R$ 1.613 em 3 anos</strong>. Diferença: R$ 891 ou R$ 297/ano — por <strong>filtragem Classe A que elimina bactérias, vírus e parasitas vs. apenas carvão ativado</strong>. Para famílias com crianças pequenas, imunodeprimidos ou regiões com qualidade de água variável, a diferença é a saúde. Para o restante: o Consul CPB34AS (R$ 550, Classe A) é o ponto de equilíbrio perfeito.</span>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!--  9. CHALEIRA ELÉTRICA                   -->
+<!-- ════════════════════════════════════════ -->
+<section class="section" id="chaleira">
+  <div class="section-header">
+    <span class="section-icon">🫖</span>
+    <div>
+      <div class="section-title">Chaleiras Elétricas</div>
+      <div class="section-subtitle">Top 10 custo-benefício · 1L a 2L · Dados verificados março/abril 2026</div>
+    </div>
+  </div>
+  <div class="note">💡 <strong>Temperatura importa muito:</strong> Café pour-over 90-96°C · Chá verde 75-85°C · Chimarrão 70-80°C · Mamadeira 40°C. Água a 100°C queima grãos de café especial e destrói compostos delicados do chá verde. Modelos com controle de temperatura por R$ 160 já resolvem isso.</div>
+  <div class="legend">
+    <div class="leg"><div class="dot" style="background:var(--eco)"></div> Econômico (até R$ 150)</div>
+    <div class="leg"><div class="dot" style="background:var(--mid)"></div> Intermediário (R$ 150–310)</div>
+    <div class="leg"><div class="dot" style="background:var(--prem)"></div> Premium (acima R$ 310)</div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Faixa</th><th>Modelo</th><th>Preço Médio</th><th>Capacidade / Potência</th><th>✅ Prós</th><th>❌ Contras</th><th>⭐</th><th>Comprar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="tier eco">ECO</span></td><td><span class="name">Mondial Pratic Hot CE-07 <span class="new">22K AVAL.</span></span></td><td class="price">~R$ 70</td><td class="feat">1L · 900W (127V) · Plástico sem BPA · Visor transparente · Alça isotérmica · Porta-cabo</td><td class="pros">🏆 Campeã de vendas; 4,7★ em 22.584 avaliações; Alça fria (segurança); Visor transparente; Porta-cabo integrado; Preço mínimo</td><td class="cons">1L apenas (pequena para famílias); Plástico (menos durável que inox); Sem controle de temperatura</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Mondial+Pratic+Hot+CE-07" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>2</td><td><span class="tier eco">ECO</span></td><td><span class="name">Britânia BCH02PI</span></td><td class="price">~R$ 120</td><td class="feat">1,8L · 1200W (127V) / 1850W (220V) · Inox · Rotação 360° · Desligamento automático · Luz indicadora</td><td class="pros">Inox a preço ECO; 1,8L para família; 1.850W 220V aquece rápido; Britânia confiável; Botão simples</td><td class="cons">Sem controle de temperatura; Design mais básico</td><td class="stars">⭐ 4,5</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Brit%C3%A2nia+BCH02PI" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>3</td><td><span class="tier eco">ECO</span></td><td><span class="name">Electrolux EEK10 <span class="new">+LEVE 550G</span></span></td><td class="price">~R$ 145</td><td class="feat">1,8L · 1800W · Inox · Tampa pop-up · <strong>550g — mais leve da lista</strong> · 4,7★ em 4.072 aval.</td><td class="pros">Mais leve da lista (550g) — ideal para quem tem dificuldade motora; 1.800W muito potente; Inox; Tampa pop-up conveniente; 4,7★ consistente; Electrolux RA1000</td><td class="cons">Sem controle de temperatura; Mais cara que a Britânia para capacidade similar</td><td class="stars">⭐ 4,7</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+EEK10" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>4</td><td><span class="tier mid">INTER</span></td><td><span class="name">Oster Tea OCEL704 <span class="new">INFUSOR</span></span></td><td class="price">~R$ 150</td><td class="feat">1,8L · Vidro + Inox · Infusor de chá integrado · Tampa e base plástico · Nível visível</td><td class="pros">ÚNICA com infusor de chá integrado da lista; Vidro permite ver a infusão; 1,8L; Versátil para chás e cafés; Elegante</td><td class="cons">Vidro frágil; Base e tampa plástico; Sem controle de temperatura preciso</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Oster+Tea+OCEL704" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>5</td><td><span class="tier mid">INTER</span></td><td><span class="name">Black+Decker K2200 <span class="new">2L + CTRL TEMP</span></span></td><td class="price">~R$ 160</td><td class="feat"><strong>2,0L</strong> · 1500W · Controle temperatura 40-100°C · Posição 70°C chimarrão · Filtro anticalcário · Inox</td><td class="pros">🏆 Melhor CB intermediário; 2L — maior capacidade da lista; Controle 40-100°C a preço acessível; Posição 70°C específica para chimarrão; 4,8★ em 6.695 avaliações; Filtro anticalcário</td><td class="cons">Material misto (aço + polipropileno); Menos premium que Cadence e Oster</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Black+Decker+K2200" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>6</td><td><span class="tier mid">INTER</span></td><td><span class="name">Cadence CEL850 Inox Control</span></td><td class="price">~R$ 190</td><td class="feat">1,8L · 1200W/1850W · Controle temperatura 0-100°C manual · Inox · Ergonômico · Design premium</td><td class="pros">Controle manual contínuo de temperatura; 1.850W 220V; Inox completo; Design premium; 4,8★; Muito vendida e bem avaliada; Referência do segmento intermediário</td><td class="cons">Área inox externa esquenta bastante; Inox risca com uso diário</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Cadence+CEL850" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>7</td><td><span class="tier mid">INTER</span></td><td><span class="name">Electrolux EEK25</span></td><td class="price">~R$ 175</td><td class="feat">1,7L · 1250W/1800W · Inox escovado · Filtro anti-resíduos · Tampa pop-up · Base antiderrapante 360°</td><td class="pros">Inox escovado resistente a impressões digitais; Filtro anti-resíduos integrado; Base antiderrapante; Electrolux RA1000; Tampa pop-up; 4,6★</td><td class="cons">Sem controle de temperatura; Capacidade 1,7L levemente menor</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+EEK25" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>8</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Oster Digital OCEL920 <span class="new">MANTER 4H</span></span></td><td class="price">~R$ 310</td><td class="feat">1,7L · Painel digital · 4 temperaturas · <strong>Manter Aquecido 4h</strong> · 1200W/1850W · Inox</td><td class="pros">Manter Aquecido por até 4 horas (exclusivo da lista); Painel digital preciso com 4 temperaturas; Oster confiável; Design elegante; 4,6★</td><td class="cons">Bico pode derramar em ângulos específicos; Preço premium para as funções oferecidas</td><td class="stars">⭐ 4,6</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Oster+Digital+OCEL920" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>9</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Electrolux Expert EKP70 <span class="new">7 TEMPS</span></span></td><td class="price">~R$ 560</td><td class="feat">1,7L · 1250W/2000W · <strong>7 temperaturas PerfectSense</strong> · Inox texturizado preto · Enrolador fio · Base 360° antiderrapante</td><td class="pros">7 temperaturas pré-definidas (mamadeira 40°C → café 95°C); PerfectSense — maior precisão da lista; 2.000W 220V ultrarrápida; Enrolador de fio integrado; Design premium inox texturizado preto; 4,8★</td><td class="cons">Alto investimento; Sem função Manter Aquecido</td><td class="stars">⭐ 4,8</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Electrolux+Expert+EKP70" target="_blank">Ver Oferta</a></td></tr>
+        <tr><td>10</td><td><span class="tier prem">PREMIUM</span></td><td><span class="name">Tramontina Smart by Breville <span class="new">TERMOSTATO STRIX</span></span></td><td class="price">~R$ 1.250</td><td class="feat">1,5L · 1500W (127V) · <strong>5 temperaturas</strong> (80/85/90/95/100°C) · Keep Warm 20 min · Visor duplo · Termostato Strix</td><td class="pros">🏆 Melhor absoluta; Termostato Strix — líder mundial em precisão; Keep Warm 20 min; Visor duplo interno e externo; Amortecedor na tampa; Parceria Tramontina + Breville (90 anos); Segurança tripla; Acabamento fosco premium</td><td class="cons">R$ 1.250 é alto para uma chaleira; Premium para quem realmente valoriza precisão e design</td><td class="stars">⭐ 4,9</td><td><a class="buy" href="https://www.amazon.com.br/s?k=Tramontina+Smart+Breville+chaleira" target="_blank">Ver Oferta</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="roi-box">
+    <strong>💰 Por que o controle de temperatura compensa — mesmo a R$ 160</strong>
+    <span>Para quem usa café especial (R$ 40-80 por pacote), extrair na temperatura errada (100°C vs. 93°C ideal) desperdiça parte do investimento em grãos premium: extração excessiva resulta em amargor e perda de compostos aromáticos. A diferença na xícara é perceptível. A Black+Decker K2200 (R$ 160) já tem controle de 40-100°C — o menor preço para esse recurso no mercado atual. Para gaúchos e sul-mato-grossenses, a posição específica de 70-75°C para chimarrão do K2200 é razão suficiente para o upgrade. O Tramontina by Breville com termostato Strix (precisão de ±1°C) é o topo absoluto: a mesma tecnologia usada nos melhores laboratórios de extração do mundo, na sua bancada.</span>
+  </div>
+</section>
+
+
+<footer>
+  <p style="margin-bottom:8px; color: var(--accent); font-weight:600;">VERSÃO 2 — Revisada e Atualizada Abril 2026</p>
+  <p>📊 Fontes verificadas: TechTudo · Promobit · Zoom · Buscapé · TesteCasa · Mapa da Cozinha · Reclame Aqui · Amazon.com.br · Mercado Livre · Casas Bahia · Magazine Luiza</p>
+  <p style="margin-top: 8px;">⚠️ Preços verificados em março/abril 2026 e sujeitos a variação. Clique em "Ver Oferta" para conferir o valor atual. Links direcionam para busca na Amazon.com.br.</p>
+  <p style="margin-top: 8px; color: var(--eco);">✅ Todos os produtos desta lista foram avaliados por base em reviews reais de consumidores — sem patrocínio ou parcerias comerciais com as marcas.</p>
+</footer>
+
+</body>
+</html>

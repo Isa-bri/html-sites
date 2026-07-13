@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Licor de Maracujá — Guia de Produção</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1A17;
+    --rind:#E8C547;
+    --pulp:#F08A24;
+    --seed:#3A2E1F;
+    --paper:#FAF7F0;
+    --alert:#C1443A;
+    --line:rgba(27,26,23,.14);
+    --muted:#6B655A;
+    --rail:280px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Inter,system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--ink);
+    color:var(--paper);
+    padding:clamp(48px,8vw,96px) clamp(20px,5vw,64px) clamp(40px,6vw,72px);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-14%;
+    top:-30%;
+    width:min(560px,70vw);
+    aspect-ratio:1/1.22;
+    border-radius:50%;
+    background:radial-gradient(circle at 34% 30%, var(--rind) 0%, #C9A22F 46%, #7C6417 100%);
+    opacity:.15;
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--rind);
+    margin-bottom:20px;
+  }
+  h1{
+    font-family:Fraunces,serif;
+    font-weight:300;
+    font-size:clamp(38px,7vw,82px);
+    line-height:1.02;
+    letter-spacing:-.02em;
+    max-width:16ch;
+  }
+  h1 em{
+    font-style:normal;
+    font-weight:700;
+    color:var(--rind);
+  }
+  .hero-sub{
+    margin-top:26px;
+    max-width:54ch;
+    color:#B8B2A6;
+    font-size:16px;
+  }
+  .specs{
+    margin-top:44px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+    border-top:1px solid rgba(250,247,240,.18);
+    max-width:760px;
+  }
+  .spec{
+    padding:18px 28px 4px 0;
+    margin-right:28px;
+    border-right:1px solid rgba(250,247,240,.12);
+  }
+  .spec:last-child{border-right:none}
+  .spec b{
+    display:block;
+    font-family:Fraunces,serif;
+    font-size:26px;
+    font-weight:500;
+    color:var(--paper);
+    line-height:1.2;
+  }
+  .spec span{
+    font-size:10px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--muted);
+    color:#8C8578;
+  }
+
+  /* ---------- SHELL ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail) 1fr;
+    max-width:1320px;
+    margin:0 auto;
+  }
+  /* rail */
+  .rail{
+    border-right:1px solid var(--line);
+    padding:48px 24px 48px 0;
+  }
+  .rail-inner{position:sticky;top:32px}
+  .rail-title{
+    font-size:10px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:600;
+    padding-left:20px;
+    margin-bottom:18px;
+  }
+  .rail a{
+    display:block;
+    text-decoration:none;
+    color:var(--ink);
+    font-size:14px;
+    padding:9px 0 9px 20px;
+    border-left:2px solid transparent;
+    transition:border-color .18s, color .18s;
+  }
+  .rail a small{
+    display:block;
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:600;
+  }
+  .rail a:hover,.rail a:focus-visible{border-left-color:var(--pulp);color:var(--pulp)}
+  .rail a.warn:hover{border-left-color:var(--alert);color:var(--alert)}
+
+  main{padding:48px clamp(20px,4vw,56px) 100px}
+
+  section{padding-bottom:64px;scroll-margin-top:24px}
+  h2{
+    font-family:Fraunces,serif;
+    font-weight:500;
+    font-size:clamp(26px,3.4vw,38px);
+    letter-spacing:-.01em;
+    margin-bottom:6px;
+  }
+  .h2-note{color:var(--muted);font-size:14px;margin-bottom:28px}
+  h3{
+    font-family:Fraunces,serif;
+    font-weight:600;
+    font-size:19px;
+    margin:26px 0 10px;
+  }
+  p{margin-bottom:12px;max-width:68ch}
+  strong{font-weight:600}
+
+  /* ---------- CALCULATOR (signature) ---------- */
+  .calc{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:4px;
+    padding:clamp(24px,3.5vw,38px);
+    margin-bottom:12px;
+  }
+  .calc h2{color:var(--rind);margin-bottom:4px}
+  .calc-lead{color:#A8A296;font-size:14px;max-width:56ch;margin-bottom:26px}
+  .calc-controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px;
+    padding-bottom:26px;
+    border-bottom:1px solid rgba(250,247,240,.16);
+  }
+  .field label{
+    display:block;
+    font-size:10px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#8C8578;
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .field input[type=number]{
+    width:130px;
+    background:transparent;
+    border:none;
+    border-bottom:2px solid var(--rind);
+    color:var(--paper);
+    font-family:Fraunces,serif;
+    font-size:32px;
+    font-weight:500;
+    padding:2px 0 6px;
+  }
+  .field input:focus-visible{outline:2px solid var(--pulp);outline-offset:4px}
+  .field .unit{color:#8C8578;font-size:12px;margin-left:6px}
+  .seg{display:flex;gap:0;border:1px solid rgba(250,247,240,.28);border-radius:3px;overflow:hidden;margin-top:4px}
+  .seg button{
+    background:transparent;
+    border:none;
+    color:#B8B2A6;
+    font-family:Inter,sans-serif;
+    font-size:12px;
+    font-weight:600;
+    padding:11px 15px;
+    cursor:pointer;
+    transition:background .15s,color .15s;
+  }
+  .seg button + button{border-left:1px solid rgba(250,247,240,.28)}
+  .seg button[aria-pressed=true]{background:var(--rind);color:var(--ink)}
+  .seg button:focus-visible{outline:2px solid var(--pulp);outline-offset:2px}
+
+  .calc-out{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:2px;
+    margin-top:26px;
+    background:rgba(250,247,240,.14);
+  }
+  .out{background:var(--ink);padding:18px 16px}
+  .out span{
+    display:block;
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#8C8578;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .out b{
+    font-family:Fraunces,serif;
+    font-size:29px;
+    font-weight:500;
+    color:var(--paper);
+    display:block;
+    line-height:1.1;
+  }
+  .out.key b{color:var(--rind)}
+  .out i{font-style:normal;font-size:11px;color:#8C8578;display:block;margin-top:4px}
+  .calc-warn{
+    margin-top:20px;
+    font-size:13px;
+    color:var(--rind);
+    padding-left:14px;
+    border-left:2px solid var(--rind);
+    line-height:1.5;
+    max-width:64ch;
+  }
+
+  /* ---------- TIMELINE ---------- */
+  .step{
+    display:grid;
+    grid-template-columns:96px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .step:last-child{border-bottom:1px solid var(--line)}
+  .when{
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--pulp);
+    line-height:1.5;
+    padding-top:3px;
+  }
+  .when em{
+    font-style:normal;
+    display:block;
+    color:var(--muted);
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:none;
+    font-size:11px;
+    margin-top:3px;
+  }
+  .step h3{margin-top:0}
+  ol,ul{margin:8px 0 0 18px}
+  li{margin-bottom:7px;max-width:66ch}
+  .callout{
+    background:#F2EDE1;
+    border-left:3px solid var(--pulp);
+    padding:13px 16px;
+    margin-top:14px;
+    font-size:14px;
+    max-width:66ch;
+    border-radius:0 3px 3px 0;
+  }
+  .callout.stop{border-left-color:var(--alert);background:#F7E9E7}
+  .callout b{color:var(--seed)}
+  .callout.stop b{color:var(--alert)}
+
+  /* ---------- TABLE ---------- */
+  table{border-collapse:collapse;width:100%;margin-top:10px;font-size:14px}
+  th{
+    text-align:left;
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:600;
+    padding:0 14px 10px 0;
+    border-bottom:1px solid var(--ink);
+  }
+  td{padding:13px 14px 13px 0;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:hover{background:#F2EDE1}
+  td.cause{color:var(--muted)}
+
+  /* ---------- KIT ---------- */
+  .kit{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2px;background:var(--line);margin-top:10px}
+  .kit div{background:var(--paper);padding:20px}
+  .kit h4{
+    font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--pulp);font-weight:700;margin-bottom:12px;
+  }
+  .kit ul{margin-left:16px}
+  .kit li{font-size:14px}
+
+  /* ---------- CHECKS ---------- */
+  .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:12px}
+  .check{border-top:2px solid var(--ink);padding-top:14px}
+  .check h4{font-family:Fraunces,serif;font-size:17px;font-weight:600;margin-bottom:6px}
+  .check p{font-size:14px;margin-bottom:6px}
+  .check .bad{color:var(--alert);font-size:13px;font-weight:500}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:32px clamp(20px,4vw,56px);
+    font-size:12px;
+    color:var(--muted);
+    max-width:1320px;
+    margin:0 auto;
+  }
+
+  @media(max-width:900px){
+    .shell{grid-template-columns:1fr}
+    .rail{
+      border-right:none;
+      border-bottom:1px solid var(--line);
+      padding:20px clamp(20px,5vw,32px);
+      overflow-x:auto;
+    }
+    .rail-inner{position:static;display:flex;gap:6px;min-width:max-content}
+    .rail-title{display:none}
+    .rail a{padding:8px 14px;border-left:none;border-bottom:2px solid transparent;white-space:nowrap}
+    .rail a small{display:none}
+    .rail a:hover{border-left-color:transparent;border-bottom-color:var(--pulp)}
+    .step{grid-template-columns:1fr;gap:8px}
+    .when{padding-top:0}
+    .when em{display:inline;margin-left:8px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Guia de produção · Batelada caseira</div>
+  <h1>Licor de <em>maracujá-azedo</em>, no estilo Passoã.</h1>
+  <p class="hero-sub">Maceração a frio em vodka. Cinco semanas do primeiro corte até a primeira dose. Tudo o que muda o resultado está aqui — e o que não muda, ficou de fora.</p>
+  <div class="specs">
+    <div class="spec"><b>18%</b><span>ABV alvo</span></div>
+    <div class="spec"><b>~5 sem.</b><span>Do início ao copo</span></div>
+    <div class="spec"><b>2,0 L</b><span>Rendimento (900ml vodka)</span></div>
+    <div class="spec"><b>4:3</b><span>g polpa : ml vodka</span></div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="rail" aria-label="Seções">
+    <div class="rail-inner">
+      <div class="rail-title">Índice</div>
+      <a href="#calculadora"><small>Comece aqui</small>Calculadora de batelada</a>
+      <a href="#equipamento"><small>Antes</small>Equipamento</a>
+      <a href="#processo"><small>5 semanas</small>Processo passo a passo</a>
+      <a href="#testes"><small>Controle</small>Testes de qualidade</a>
+      <a href="#armazenamento"><small>Depois</small>Armazenamento</a>
+      <a href="#problemas" class="warn"><small>Socorro</small>Problemas e soluções</a>
+      <a href="#coqueteis"><small>Enfim</small>O que fazer com ele</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ================= CALCULADORA ================= -->
+    <section id="calculadora">
+      <div class="calc">
+        <h2>Calculadora de batelada</h2>
+        <p class="calc-lead">A fruta é o gargalo, não a vodka. Diga quanta polpa você conseguiu e a receita inteira se recalcula. A proporção que não se quebra: <strong>4 g de polpa para cada 3 ml de vodka.</strong></p>
+
+        <div class="calc-controls">
+          <div class="field">
+            <label for="polpa">Polpa disponível</label>
+            <input type="number" id="polpa" value="1200" min="100" max="5000" step="50">
+            <span class="unit">g</span>
+          </div>
+          <div class="field">
+            <label for="abv">ABV desejado</label>
+            <div class="seg" role="group" aria-label="ABV desejado">
+              <button data-abv="15" aria-pressed="false">15%</button>
+              <button data-abv="18" aria-pressed="true">18%</button>
+              <button data-abv="20" aria-pressed="false">20%</button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="doce">Doçura</label>
+            <div class="seg" role="group" aria-label="Doçura">
+              <button data-doce="30" aria-pressed="false">Seco</button>
+              <button data-doce="40" aria-pressed="true">Padrão</button>
+              <button data-doce="50" aria-pressed="false">Passoã</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-out">
+          <div class="out"><span>Maracujás</span><b id="o-frutos">22</b><i>≈ 55 g de polpa cada</i></div>
+          <div class="out key"><span>Vodka 40%</span><b id="o-vodka">900 ml</b><i id="o-vodka-note">Intention · 900 ml</i></div>
+          <div class="out"><span>Açúcar</span><b id="o-acucar">800 g</b><i>refinado</i></div>
+          <div class="out"><span>Água (xarope)</span><b id="o-agua">400 ml</b><i>½ do peso do açúcar</i></div>
+          <div class="out"><span>Ácido cítrico</span><b id="o-acido">4 g</b><i>2 g por litro final</i></div>
+          <div class="out key"><span>Volume final</span><b id="o-final">2,00 L</b><i id="o-garrafas">≈ 3 garrafas de 700 ml</i></div>
+        </div>
+
+        <p class="calc-warn" id="warn">Sua garrafa inteira de Intention cabe exatamente nesta batelada. Complete com água filtrada até o volume final — o número é exato, não aproximado.</p>
+      </div>
+      <p style="font-size:13px;color:var(--muted);max-width:66ch">
+        Como o cálculo funciona: o álcool puro da vodka (<em>ml × 0,40</em>) é fixo. O volume final é esse álcool dividido pelo ABV alvo. Açúcar e água do xarope entram dentro desse volume — o resto se completa com água filtrada no final.
+      </p>
+    </section>
+
+    <!-- ================= EQUIPAMENTO ================= -->
+    <section id="equipamento">
+      <h2>Equipamento</h2>
+      <p class="h2-note">Nada aqui é caro. O que falta, se improvisa — menos a balança.</p>
+      <div class="kit">
+        <div>
+          <h4>Essencial</h4>
+          <ul>
+            <li>Pote de vidro <strong>2 L</strong> com tampa (ou dois de 1,5 L)</li>
+            <li>Balança de cozinha</li>
+            <li>Peneira fina</li>
+            <li>Pano de voal ou fralda de algodão</li>
+            <li>Filtros de café de papel + suporte</li>
+            <li>Funil</li>
+            <li>Jarra graduada</li>
+            <li>Garrafas de vidro com tampa hermética</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Faz diferença</h4>
+          <ul>
+            <li>Garrafas <strong>âmbar</strong> — a luz mata o aroma frutado em semanas</li>
+            <li>Termômetro de cozinha (para o xarope a 60 °C)</li>
+            <li>3–4 suportes de filtro em paralelo — 2 L levam 6–8 h em um só</li>
+            <li>Alcoômetro / densímetro, se quiser conferir o ABV</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Não use</h4>
+          <ul>
+            <li><strong>Liquidificador.</strong> Tritura semente, libera tanino amargo e óleo — turbidez permanente</li>
+            <li><strong>Alambique caseiro.</strong> Ilegal sem registro, perigoso, e destruiria justamente os ésteres frutados que você quer</li>
+            <li>Clarificantes (gelatina, clara de ovo) — desnecessários e alteram o corpo</li>
+            <li>Corante. A cor laranja-neon do Passoã é artificial; o seu fica âmbar</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROCESSO ================= -->
+    <section id="processo">
+      <h2>Processo</h2>
+      <p class="h2-note">A ordem importa e os tempos importam. Cada bloco abaixo é uma janela real do calendário.</p>
+
+      <div class="step">
+        <div class="when">Semana 0<em>0–5 dias</em></div>
+        <div>
+          <h3>Amadurecer e selecionar a fruta</h3>
+          <ol>
+            <li>Escolha frutos <strong>pesados para o tamanho</strong> e com a <strong>casca levemente enrugada</strong>. Enrugado é maduro — é onde está o aroma.</li>
+            <li>Fruta lisa e firme ainda não chegou lá. Deixe na bancada, fora da geladeira, <strong>3 a 5 dias</strong> até enrugar.</li>
+            <li>Descarte qualquer fruto com mofo ou parte mole demais. Um estraga a batelada inteira.</li>
+          </ol>
+          <div class="callout"><b>Referência de rendimento:</b> um maracujá-azedo médio dá <strong>50–60 g de polpa com semente</strong>. Para 1.200 g você precisa de 20 a 24 frutos.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="when">Dia 1<em>30 minutos</em></div>
+        <div>
+          <h3>Extrair a polpa</h3>
+          <ol>
+            <li>Lave os frutos. Corte ao meio.</li>
+            <li><strong>Colha a polpa com as sementes</strong>, direto no pote de vidro. As sementes ficam — inteiras, elas só cedem aroma.</li>
+            <li>Mexa com uma colher e deixe descansar <strong>20 minutos</strong>. O gel se solta das sementes sozinho e o rendimento sobe.</li>
+            <li>Pese. É esse número que você joga na calculadora.</li>
+          </ol>
+          <div class="callout stop"><b>Não bata no liquidificador.</b> A lâmina quebra a semente. Semente quebrada = tanino amargo + óleo que nunca mais sai do líquido. É o erro que mais estraga licor de maracujá.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="when">Dias 1–10<em>maceração</em></div>
+        <div>
+          <h3>Macerar a frio</h3>
+          <ol>
+            <li>Despeje a vodka sobre a polpa. Feche bem.</li>
+            <li><strong>Agite uma vez por dia nos 3 primeiros dias.</strong> Depois, deixe parado.</li>
+            <li>Guarde <strong>no escuro</strong>, em temperatura ambiente (20–28 °C). Armário fechado serve.</li>
+            <li>Opcional, para aroma: a casca amarela (só o <em>flavedo</em>, nunca a parte branca) de meio fruto, retirada no terceiro dia.</li>
+          </ol>
+          <div class="callout stop"><b>Teto de 14 dias.</b> Depois disso as sementes começam a ceder amargor mesmo inteiras. Dez dias é o ponto ideal para 2 L.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="when">Dias 11–12<em>1–2 dias</em></div>
+        <div>
+          <h3>Coar e decantar</h3>
+          <ol>
+            <li>Passe pela peneira fina, depois pelo pano. <strong>Pressione de leve</strong> — nunca esprema com força.</li>
+            <li>Deixe o líquido <strong>24 h na geladeira</strong>, parado.</li>
+            <li><strong>Decante:</strong> transfira só o líquido claro de cima, deixando a borra no fundo. Não vire o pote.</li>
+          </ol>
+          <div class="callout"><b>Por que não espremer:</b> força empurra polpa fina através do pano. Ela não decanta, não filtra e turva o licor para sempre. Perder 5% de rendimento aqui é barato.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="when">Dia 12<em>15 minutos</em></div>
+        <div>
+          <h3>Xarope e blend</h3>
+          <ol>
+            <li>Aqueça a água com o açúcar até <strong>60 °C</strong>, só até dissolver. Não precisa ferver.</li>
+            <li>Dissolva o ácido cítrico. Desligue.</li>
+            <li><strong>Esfrie por completo até a temperatura ambiente.</strong> Xarope quente na vodka evapora álcool e cozinha o aroma.</li>
+            <li>Misture o xarope frio ao macerado filtrado.</li>
+            <li><strong>Meça o volume na jarra e complete com água filtrada até o volume final da calculadora.</strong> Esse passo é o que define o ABV — não pule e não estime no olho.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="when">Dias 12–19<em>3–7 dias</em></div>
+        <div>
+          <h3>Clarificar</h3>
+          <p>Escolha um método. O terceiro dá o melhor resultado.</p>
+          <ul>
+            <li><strong>Repouso a frio (simples):</strong> geladeira por 5 dias, decante de novo.</li>
+            <li><strong>Filtro de papel (bom):</strong> passe por filtro de café. Lento — 6 a 8 h para 2 L. Use 3–4 filtros em paralelo.</li>
+            <li><strong>Choque térmico + filtro (melhor):</strong> freezer por 12 h. A pectina e os óleos precipitam. <strong>Filtre ainda gelado.</strong></li>
+          </ul>
+          <div class="callout"><b>Não congela.</b> A 18% ABV o líquido só fica denso e xaroposo no freezer — é exatamente esse frio que faz a turbidez se separar.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="when">Semanas 3–5<em>15–30 dias</em></div>
+        <div>
+          <h3>Descansar</h3>
+          <ol>
+            <li>Engarrafe. Encha até o gargalo — menos ar, menos oxidação.</li>
+            <li><strong>Espere no mínimo 15 dias antes de provar de verdade.</strong> O álcool "casa" com o açúcar e a ardência some.</li>
+            <li>Aos <strong>30 dias</strong> a diferença é grande. Aos 60, melhor ainda.</li>
+          </ol>
+          <div class="callout stop"><b>Provou no dia 12 e achou agressivo?</b> Normal. Não corrija com açúcar — é falta de tempo, não falta de doce. Adoçar agora vira um licor enjoativo em janeiro.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TESTES ================= -->
+    <section id="testes">
+      <h2>Testes de qualidade</h2>
+      <p class="h2-note">Faça no dia do engarrafamento e de novo aos 30 dias.</p>
+      <div class="checks">
+        <div class="check">
+          <h4>Cor</h4>
+          <p>Amarelo-âmbar <strong>translúcido</strong>. Deve dar para ler texto através da garrafa.</p>
+          <p class="bad">Opaco → filtre de novo, a frio.</p>
+        </div>
+        <div class="check">
+          <h4>Viscosidade</h4>
+          <p>Gire na taça: deve escorrer com uma <strong>perna leve</strong>, não como água.</p>
+          <p class="bad">Aguado → faltou açúcar. Grudento → passou de 50 g/100 ml.</p>
+        </div>
+        <div class="check">
+          <h4>Sabor</h4>
+          <p>Doce na frente, <strong>acidez no meio</strong>, final limpo.</p>
+          <p class="bad">Amargor no final → semente triturada ou maceração longa demais.</p>
+        </div>
+        <div class="check">
+          <h4>Ardência</h4>
+          <p>Deve aquecer, não queimar.</p>
+          <p class="bad">Queima a garganta → faltou descanso, ou o volume final ficou curto (ABV alto).</p>
+        </div>
+        <div class="check">
+          <h4>Teste do gelo</h4>
+          <p>Ponha 30 ml sobre gelo. Deve ficar <strong>límpido</strong>.</p>
+          <p class="bad">Fica leitoso e não volta → óleo e pectina em excesso. Choque de freezer + filtro.</p>
+        </div>
+        <div class="check">
+          <h4>Aroma</h4>
+          <p>Maracujá reconhecível <strong>antes</strong> de sentir o álcool.</p>
+          <p class="bad">Só cheiro de vodka → pouca polpa para a quantidade de destilado.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ARMAZENAMENTO ================= -->
+    <section id="armazenamento">
+      <h2>Armazenamento</h2>
+      <table>
+        <thead><tr><th style="width:26%">Fator</th><th>O que fazer</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Recipiente</strong></td><td>Vidro <strong>âmbar</strong>, ou vidro claro guardado no escuro. Luz destrói os ésteres frutados em poucas semanas — é o inimigo número um.</td></tr>
+          <tr><td><strong>Vedação</strong></td><td>Tampa hermética ou rolha. Encha até o gargalo: menos oxigênio na garrafa, mais tempo de vida.</td></tr>
+          <tr><td><strong>Fechado</strong></td><td>Armário fresco, longe do fogão. <strong>12 a 18 meses</strong> sem perda relevante.</td></tr>
+          <tr><td><strong>Aberto</strong></td><td>Geladeira. <strong>4 a 6 meses</strong> em qualidade plena. Não estraga depois disso — só perde aroma.</td></tr>
+          <tr><td><strong>Por que dura</strong></td><td>18% ABV somados a ~40 g/100 ml de açúcar são autoconservantes. Você não precisa de conservante nenhum.</td></tr>
+          <tr><td><strong>Sedimento novo</strong></td><td>É normal aparecer um fundo fino depois de meses. Não é mofo. Decante ou simplesmente não vire a última dose.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ================= PROBLEMAS ================= -->
+    <section id="problemas">
+      <h2>Problemas e soluções</h2>
+      <p class="h2-note">Quase tudo tem conserto. O amargor não tem.</p>
+      <table>
+        <thead>
+          <tr><th style="width:22%">Sintoma</th><th style="width:28%">Causa</th><th>O que fazer</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Turbidez que não sai</strong></td>
+            <td class="cause">Pectina e óleo essencial da fruta em suspensão</td>
+            <td>Freezer por 12 h, depois filtro de papel <strong>ainda gelado</strong>. Prevenção: não triturar a semente e não espremer o pano.</td>
+          </tr>
+          <tr>
+            <td><strong>Cristaliza no fundo</strong></td>
+            <td class="cause">Açúcar supersaturado, ou garrafa guardada muito fria</td>
+            <td>Banho-maria a 40 °C e agite até dissolver. Prevenção: sempre xarope, nunca açúcar seco direto no líquido.</td>
+          </tr>
+          <tr>
+            <td><strong>Amargor no final</strong></td>
+            <td class="cause">Semente quebrada, parte branca da casca, ou maceração acima de 14 dias</td>
+            <td><strong>Sem conserto.</strong> Dá para mascarar com mais xarope, mas nunca fica bom. Prevenção é tudo aqui.</td>
+          </tr>
+          <tr>
+            <td><strong>Agressivo, "alcoólico"</strong></td>
+            <td class="cause">Descanso insuficiente</td>
+            <td>Espere mais 2 a 4 semanas. Resolve sozinho. <strong>Não adoce para compensar.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Separa em camadas</strong></td>
+            <td class="cause">Emulsão instável de óleos</td>
+            <td>Agite antes de servir, ou filtre a frio de novo para resolver de vez.</td>
+          </tr>
+          <tr>
+            <td><strong>Cor escurecendo</strong></td>
+            <td class="cause">Oxidação e luz</td>
+            <td>Não reverte. Prevenção: vidro âmbar, garrafa cheia, escuro.</td>
+          </tr>
+          <tr>
+            <td><strong>Sabor apagado</strong></td>
+            <td class="cause">Fruta verde ou pouca polpa para o volume de vodka</td>
+            <td>Nesta batelada, reduza o volume final (aceite um ABV maior). Na próxima, suba a polpa.</td>
+          </tr>
+          <tr>
+            <td><strong>Rende menos que o previsto</strong></td>
+            <td class="cause">A polpa absorve parte da vodka</td>
+            <td>Normal perder 8–12% no coar. O volume final se corrige com água — o ABV continua certo.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ================= COQUETÉIS ================= -->
+    <section id="coqueteis">
+      <h2>O que fazer com ele</h2>
+      <p class="h2-note">Três formas de servir, da mais simples à mais séria.</p>
+      <table>
+        <thead><tr><th style="width:22%">Drinque</th><th style="width:38%">Receita</th><th>Nota</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Teste de bancada</strong></td>
+            <td>50 ml do licor · 100 ml de suco de laranja · gelo</td>
+            <td>Se funciona aqui, funciona em qualquer coisa. É o seu controle de qualidade disfarçado de drinque.</td>
+          </tr>
+          <tr>
+            <td><strong>Puro, gelado</strong></td>
+            <td>40 ml · copo pequeno · direto da geladeira</td>
+            <td>Serve como digestivo. É aqui que você percebe se o descanso foi suficiente.</td>
+          </tr>
+          <tr>
+            <td><strong>Com espumante</strong></td>
+            <td>30 ml do licor no fundo da taça · complete com espumante brut gelado</td>
+            <td>A acidez do brut equilibra o açúcar. O melhor uso dele, sem discussão.</td>
+          </tr>
+          <tr>
+            <td><strong>Sour de maracujá</strong></td>
+            <td>50 ml do licor · 25 ml de limão · 15 ml de clara · shake seco, depois com gelo</td>
+            <td>O ácido cítrico da receita já ajuda na estrutura. Coe duas vezes.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout"><b>As sementes coadas não vão para o lixo.</b> Cobertas com um pouco de xarope e guardadas na geladeira, viram cobertura de sobremesa por uns 10 dias.</div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Feito para uma batelada de vodka Intention 900 ml · maracujá-azedo · Maringá, PR. Os números da calculadora são exatos — o resto é paciência.
+</footer>
+
+<script>
+(function(){
+  var polpaEl = document.getElementById('polpa');
+  var state = { polpa:1200, abv:18, doce:40 };
+
+  var out = {
+    frutos:  document.getElementById('o-frutos'),
+    vodka:   document.getElementById('o-vodka'),
+    vnote:   document.getElementById('o-vodka-note'),
+    acucar:  document.getElementById('o-acucar'),
+    agua:    document.getElementById('o-agua'),
+    acido:   document.getElementById('o-acido'),
+    final:   document.getElementById('o-final'),
+    garrafas:document.getElementById('o-garrafas'),
+    warn:    document.getElementById('warn')
+  };
+
+  function fmtL(ml){
+    if(ml >= 1000) return (ml/1000).toFixed(2).replace('.',',') + ' L';
+    return Math.round(ml) + ' ml';
+  }
+
+  function render(){
+    var polpa = state.polpa;
+
+    // Proporção fixa: 4 g polpa : 3 ml vodka
+    var vodka = Math.round(polpa * 0.75);
+
+    // Álcool puro e volume final para o ABV alvo
+    var alcool = vodka * 0.40;
+    var final  = alcool / (state.abv/100);
+
+    // Açúcar: g por 100 ml de produto final
+    var acucar = Math.round(final * state.doce / 100);
+    var agua   = Math.round(acucar / 2);            // xarope 2:1
+    var acido  = Math.round(final / 1000 * 2 * 10)/10;
+    var frutos = Math.round(polpa / 55);
+    var garrafas = final / 700;
+
+    out.frutos.textContent  = frutos;
+    out.vodka.textContent   = fmtL(vodka);
+    out.acucar.textContent  = acucar >= 1000
+      ? (acucar/1000).toFixed(2).replace('.',',') + ' kg'
+      : acucar + ' g';
+    out.agua.textContent    = fmtL(agua);
+    out.acido.textContent   = String(acido).replace('.',',') + ' g';
+    out.final.textContent   = fmtL(final);
+    out.garrafas.textContent = '≈ ' + garrafas.toFixed(1).replace('.',',') + ' garrafas de 700 ml';
+
+    // Nota da vodka + aviso contextual
+    var diff = vodka - 900;
+    if(Math.abs(diff) <= 30){
+      out.vnote.textContent = 'Sua garrafa inteira de Intention';
+      out.warn.textContent = 'A garrafa inteira de Intention (900 ml) cabe exatamente aqui. Complete com água filtrada até ' + fmtL(final) + ' — meça na jarra, não estime.';
+    } else if(diff < 0){
+      out.vnote.textContent = 'Sobram ' + Math.abs(diff) + ' ml da garrafa';
+      out.warn.textContent = 'Com ' + polpa + ' g de polpa, use só ' + vodka + ' ml da Intention — sobram ' + Math.abs(diff) + ' ml na garrafa. Usar os 900 ml completos com essa pouca fruta deixaria o licor aguado de sabor.';
+    } else {
+      out.vnote.textContent = 'Faltam ' + diff + ' ml — precisa de mais vodka';
+      out.warn.textContent = 'Essa quantidade de polpa pede ' + vodka + ' ml de vodka: faltam ' + diff + ' ml além da garrafa de 900 ml. Ou arrume mais destilado, ou congele o excedente de polpa para a próxima batelada.';
+    }
+  }
+
+  polpaEl.addEventListener('input', function(){
+    var v = parseInt(polpaEl.value, 10);
+    if(!isNaN(v) && v > 0){ state.polpa = v; render(); }
+  });
+
+  document.querySelectorAll('.seg button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var key = btn.dataset.abv ? 'abv' : 'doce';
+      var val = parseInt(btn.dataset.abv || btn.dataset.doce, 10);
+      state[key] = val;
+      btn.parentElement.querySelectorAll('button').forEach(function(b){
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      render();
+    });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

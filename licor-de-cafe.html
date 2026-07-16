@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Licor de Café — Guia de Produção</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C140F;
+    --rind:#C9A15A;
+    --pulp:#B5651D;
+    --seed:#3A2418;
+    --paper:#FBF6EF;
+    --alert:#C1443A;
+    --line:rgba(28,20,15,.14);
+    --muted:#6B5D50;
+    --rail:280px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Inter,system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--ink);
+    color:var(--paper);
+    padding:clamp(48px,8vw,96px) clamp(20px,5vw,64px) clamp(40px,6vw,72px);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-14%;
+    top:-30%;
+    width:min(560px,70vw);
+    aspect-ratio:1/1.22;
+    border-radius:50%;
+    background:radial-gradient(circle at 34% 30%, var(--rind) 0%, #8A6A2E 46%, #4A3814 100%);
+    opacity:.15;
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--rind);
+    margin-bottom:20px;
+  }
+  h1{
+    font-family:Fraunces,serif;
+    font-weight:300;
+    font-size:clamp(38px,7vw,82px);
+    line-height:1.02;
+    letter-spacing:-.02em;
+    max-width:16ch;
+  }
+  h1 em{
+    font-style:normal;
+    font-weight:700;
+    color:var(--rind);
+  }
+  .hero-sub{
+    margin-top:26px;
+    max-width:54ch;
+    color:#B8B2A6;
+    font-size:16px;
+  }
+  .specs{
+    margin-top:44px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+    border-top:1px solid rgba(250,247,240,.18);
+    max-width:760px;
+  }
+  .spec{
+    padding:18px 28px 4px 0;
+    margin-right:28px;
+    border-right:1px solid rgba(250,247,240,.12);
+  }
+  .spec:last-child{border-right:none}
+  .spec b{
+    display:block;
+    font-family:Fraunces,serif;
+    font-size:26px;
+    font-weight:500;
+    color:var(--paper);
+    line-height:1.2;
+  }
+  .spec span{
+    font-size:10px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--muted);
+    color:#8C8578;
+  }
+
+  /* ---------- SHELL ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail) 1fr;
+    max-width:1320px;
+    margin:0 auto;
+  }
+  /* rail */
+  .rail{
+    border-right:1px solid var(--line);
+    padding:48px 24px 48px 0;
+  }
+  .rail-inner{position:sticky;top:32px}
+  .rail-title{
+    font-size:10px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:600;
+    padding-left:20px;
+    margin-bottom:18px;
+  }
+  .rail a{
+    display:block;
+    text-decoration:none;
+    color:var(--ink);
+    font-size:14px;
+    padding:9px 0 9px 20px;
+    border-left:2px solid transparent;
+    transition:border-color .18s, color .18s;
+  }
+  .rail a small{
+    display:block;
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:600;
+  }
+  .rail a:hover,.rail a:focus-visible{border-left-color:var(--pulp);color:var(--pulp)}
+  .rail a.warn:hover{border-left-color:var(--alert);color:var(--alert)}
+
+  main{padding:48px clamp(20px,4vw,56px) 100px}
+
+  section{padding-bottom:64px;scroll-margin-top:24px}
+  h2{
+    font-family:Fraunces,serif;
+    font-weight:500;
+    font-size:clamp(26px,3.4vw,38px);
+    letter-spacing:-.01em;
+    margin-bottom:6px;
+  }
+  .h2-note{color:var(--muted);font-size:14px;margin-bottom:28px}
+  h3{
+    font-family:Fraunces,serif;
+    font-weight:600;
+    font-size:19px;
+    margin:26px 0 10px;
+  }
+  p{margin-bottom:12px;max-width:68ch}
+  strong{font-weight:600}
+
+  /* ---------- CALCULATOR (signature) ---------- */
+  .calc{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:4px;
+    padding:clamp(24px,3.5vw,38px);
+    margin-bottom:12px;
+  }
+  .calc h2{color:var(--rind);margin-bottom:4px}
+  .calc-lead{color:#A8A296;font-size:14px;max-width:56ch;margin-bottom:26px}
+  .calc-controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px;
+    padding-bottom:26px;
+    border-bottom:1px solid rgba(250,247,240,.16);
+  }
+  .field label{
+    display:block;
+    font-size:10px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#8C8578;
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .field input[type=number]{
+    width:130px;
+    background:transparent;
+    border:none;
+    border-bottom:2px solid var(--rind);
+    color:var(--paper);
+    font-family:Fraunces,serif;
+    font-size:32px;
+    font-weight:500;
+    padding:2px 0 6px;
+  }
+  .field input:focus-visible{outline:2px solid var(--pulp);outline-offset:4px}
+  .field .unit{color:#8C8578;font-size:12px;margin-left:6px}
+  .seg{display:flex;gap:0;border:1px solid rgba(250,247,240,.28);border-radius:3px;overflow:hidden;margin-top:4px}
+  .seg button{
+    background:transparent;
+    border:none;
+    color:#B8B2A6;
+    font-family:Inter,sans-serif;
+    font-size:12px;
+    font-weight:600;
+    padding:11px 15px;
+    cursor:pointer;
+    transition:background .15s,color .15s;
+  }
+  .seg button + button{border-left:1px solid rgba(250,247,240,.28)}
+  .seg button[aria-pressed=true]{background:var(--rind);color:var(--ink)}
+  .seg button:focus-visible{outline:2px solid var(--pulp);outline-offset:2px}
+
+  .calc-out{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:2px;
+    margin-top:26px;
+    background:rgba(250,247,240,.14);
+  }
+  .out{background:var(--ink);padding:18px 16px}
+  .out span{
+    display:block;
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#8C8578;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .out b{
+    font-family:Fraunces,serif;
+    font-size:29px;
+    font-weight:500;
+    color:var(--paper);
+    display:block;
+    line-height:1.1;
+  }
+  .out.key b{color:var(--rind)}
+  .out i{font-style:normal;font-size:11px;color:#8C8578;display:block;margin-top:4px}
+  .calc-warn{
+    margin-top:20px;
+    font-size:13px;
+    color:var(--rind);
+    padding-left:14px;
+    border-left:2px solid var(--rind);
+    line-height:1.5;
+    max-width:64ch;
+  }
+
+  /* ---------- TIMELINE ---------- */
+  .step{
+    display:grid;
+    grid-template-columns:96px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .step:last-child{border-bottom:1px solid var(--line)}
+  .when{
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--pulp);
+    line-height:1.5;
+    padding-top:3px;
+  }
+  .when em{
+    font-style:normal;
+    display:block;
+    color:var(--muted);
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:none;
+    font-size:11px;
+    margin-top:3px;
+  }
+  .step h3{margin-top:0}
+  ol,ul{margin:8px 0 0 18px}
+  li{margin-bottom:7px;max-width:66ch}
+  .callout{
+    background:#F1E9DC;
+    border-left:3px solid var(--pulp);
+    padding:13px 16px;
+    margin-top:14px;
+    font-size:14px;
+    max-width:66ch;
+    border-radius:0 3px 3px 0;
+  }
+  .callout.stop{border-left-color:var(--alert);background:#F7E9E7}
+  .callout b{color:var(--seed)}
+  .callout.stop b{color:var(--alert)}
+
+  /* ---------- TABLE ---------- */
+  table{border-collapse:collapse;width:100%;margin-top:10px;font-size:14px}
+  th{
+    text-align:left;
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:600;
+    padding:0 14px 10px 0;
+    border-bottom:1px solid var(--ink);
+  }
+  td{padding:13px 14px 13px 0;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:hover{background:#F1E9DC}
+  td.cause{color:var(--muted)}
+
+  /* ---------- KIT ---------- */
+  .kit{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2px;background:var(--line);margin-top:10px}
+  .kit div{background:var(--paper);padding:20px}
+  .kit h4{
+    font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--pulp);font-weight:700;margin-bottom:12px;
+  }
+  .kit ul{margin-left:16px}
+  .kit li{font-size:14px}
+
+  /* ---------- CHECKS ---------- */
+  .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:12px}
+  .check{border-top:2px solid var(--ink);padding-top:14px}
+  .check h4{font-family:Fraunces,serif;font-size:17px;font-weight:600;margin-bottom:6px}
+  .check p{font-size:14px;margin-bottom:6px}
+  .check .bad{color:var(--alert);font-size:13px;font-weight:500}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:32px clamp(20px,4vw,56px);
+    font-size:12px;
+    color:var(--muted);
+    max-width:1320px;
+    margin:0 auto;
+  }
+
+  @media(max-width:900px){
+    .shell{grid-template-columns:1fr}
+    .rail{
+      border-right:none;
+      border-bottom:1px solid var(--line);
+      padding:20px clamp(20px,5vw,32px);
+      overflow-x:auto;
+    }
+    .rail-inner{position:static;display:flex;gap:6px;min-width:max-content}
+    .rail-title{display:none}
+    .rail a{padding:8px 14px;border-left:none;border-bottom:2px solid transparent;white-space:nowrap}
+    .rail a small{display:none}
+    .rail a:hover{border-left-color:transparent;border-bottom-color:var(--pulp)}
+    .step{grid-template-columns:1fr;gap:8px}
+    .when{padding-top:0}
+    .when em{display:inline;margin-left:8px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Guia de produção · Batelada caseira</div>
+  <h1>Licor de <em>café</em>, com canela e calda pérola.</h1>
+  <p class="hero-sub">Maceração a frio em cachaça (ou vodka, rum, gin). Dez dias do grão à garrafa, com uma calda de açúcar fria no final para dar corpo e brilho.</p>
+  <div class="specs">
+    <div class="spec"><b>~25%</b><span>ABV aproximado</span></div>
+    <div class="spec"><b>~11 dias</b><span>Do início ao copo</span></div>
+    <div class="spec"><b>800 ml</b><span>Rendimento (500ml destilado)</span></div>
+    <div class="spec"><b>75g:500ml</b><span>café em grão : destilado</span></div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="rail" aria-label="Seções">
+    <div class="rail-inner">
+      <div class="rail-title">Índice</div>
+      <a href="#calculadora"><small>Comece aqui</small>Calculadora de batelada</a>
+      <a href="#equipamento"><small>Antes</small>Equipamento</a>
+      <a href="#processo"><small>11 dias</small>Processo passo a passo</a>
+      <a href="#testes"><small>Controle</small>Testes de qualidade</a>
+      <a href="#armazenamento"><small>Depois</small>Armazenamento</a>
+      <a href="#problemas" class="warn"><small>Socorro</small>Problemas e soluções</a>
+      <a href="#coqueteis"><small>Enfim</small>O que fazer com ele</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ================= CALCULADORA ================= -->
+    <section id="calculadora">
+      <div class="calc">
+        <h2>Calculadora de batelada</h2>
+        <p class="calc-lead">O destilado é o ponto de partida — diga quanto você tem e o resto se ajusta. A receita original usa <strong>75 g de café em grão para cada 500 ml de destilado.</strong></p>
+
+        <div class="calc-controls">
+          <div class="field">
+            <label for="destilado">Destilado disponível</label>
+            <input type="number" id="destilado" value="500" min="100" max="3000" step="50">
+            <span class="unit">ml</span>
+          </div>
+          <div class="field">
+            <label for="tipo-cafe">Tipo de café</label>
+            <div class="seg" role="group" aria-label="Tipo de café">
+              <button data-tipo="grao" aria-pressed="true">Em grão</button>
+              <button data-tipo="moido" aria-pressed="false">Moído</button>
+              <button data-tipo="soluvel" aria-pressed="false">Solúvel</button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="doce">Doçura</label>
+            <div class="seg" role="group" aria-label="Doçura">
+              <button data-doce="0.8" aria-pressed="false">Seco</button>
+              <button data-doce="1.0" aria-pressed="true">Padrão</button>
+              <button data-doce="1.2" aria-pressed="false">Pérola</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-out">
+          <div class="out key"><span>Café em grão</span><b id="o-cafe">75 g</b><i id="o-cafe-note">≈ 50g moído · 25g solúvel</i></div>
+          <div class="out"><span>Canela em pau</span><b id="o-canela">1 unidade</b><i>rama inteira</i></div>
+          <div class="out"><span>Essência de baunilha</span><b id="o-baunilha">1,0 colher(es) de sopa</b><i>de sopa</i></div>
+          <div class="out"><span>Açúcar (calda)</span><b id="o-acucar">500 g</b><i>refinado</i></div>
+          <div class="out"><span>Água (calda)</span><b id="o-agua">200 ml</b><i>fervendo</i></div>
+          <div class="out key"><span>Volume final</span><b id="o-final">800 ml</b><i id="o-garrafas">≈ 1,1 garrafas de 700 ml</i></div>
+          <div class="out key"><span>ABV aproximado</span><b id="o-abv">25,0%</b><i>destilado a 40%</i></div>
+        </div>
+
+        <p class="calc-warn" id="warn">Envolva o vidro inteiro em papel alumínio antes da maceração — o café oxida e perde aroma com luz, exatamente como uma fruta.</p>
+      </div>
+      <p style="font-size:13px;color:var(--muted);max-width:66ch">
+        Como o cálculo funciona: café, canela e baunilha escalam linearmente com o destilado. A água da calda escala com o açúcar (proporção 200:500). O volume final soma o destilado, a água e o ganho de volume do açúcar dissolvido — é por isso que 500 ml de destilado rendem 800 ml de licor.
+      </p>
+    </section>
+
+    <!-- ================= EQUIPAMENTO ================= -->
+    <section id="equipamento">
+      <h2>Equipamento</h2>
+      <p class="h2-note">Nada aqui é caro. O que falta, se improvisa — menos a balança.</p>
+      <div class="kit">
+        <div>
+          <h4>Essencial</h4>
+          <ul>
+            <li>Vidro com tampa hermética (garrafa ou pote) com folga para o destilado</li>
+            <li>Balança de cozinha</li>
+            <li>Coador de pano (voal) ou filtro de café de papel</li>
+            <li>Papel alumínio, para vedar a luz durante a maceração</li>
+            <li>Panela pequena, para a calda</li>
+            <li>Funil</li>
+            <li>Garrafas de vidro com tampa hermética</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Faz diferença</h4>
+          <ul>
+            <li>Café em grão de torra <strong>média</strong>, recém-torrado — torra muito escura amarga o licor</li>
+            <li>Canela em <strong>pau</strong>, não em pó</li>
+            <li>Garrafas <strong>âmbar</strong> — o licor fica 12 meses guardado, luz encurta essa validade</li>
+            <li>2–3 filtros de café em paralelo, se for coar volume grande</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Não use</h4>
+          <ul>
+            <li><strong>Canela em pó.</strong> Não filtra por completo — vira sedimento permanente no fundo da garrafa</li>
+            <li><strong>Borra de café já usada.</strong> Só grão, pó ou solúvel frescos entram na maceração</li>
+            <li>Recipiente de plástico para macerar — prefira sempre vidro</li>
+            <li>Calda quente misturada direto no licor — evapora álcool e cozinha o aroma</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROCESSO ================= -->
+    <section id="processo">
+      <h2>Processo</h2>
+      <p class="h2-note">A ordem importa e os tempos importam. Cada bloco abaixo é uma janela real do calendário.</p>
+
+      <div class="step">
+        <div class="when">Dia 1<em>10 minutos</em></div>
+        <div>
+          <h3>Montar a maceração</h3>
+          <ol>
+            <li>No vidro, junte o café, a canela em pau, a essência de baunilha e o destilado.</li>
+            <li>Feche bem e <strong>agite por 1 minuto</strong>.</li>
+            <li>Envolva o vidro inteiro em <strong>papel alumínio</strong> — o café oxida e perde aroma exposto à luz.</li>
+          </ol>
+          <div class="callout"><b>Use os números da calculadora:</b> a proporção de café muda conforme grão, moído ou solúvel — ajuste antes de pesar.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="when">Dias 1–10<em>maceração</em></div>
+        <div>
+          <h3>Macerar a frio</h3>
+          <ol>
+            <li><strong>Agite uma vez por dia</strong>, todos os dias.</li>
+            <li>Guarde <strong>no escuro</strong>, em temperatura ambiente.</li>
+            <li>Não abra antes do décimo dia — abrir e provar antes só deixa entrar ar.</li>
+          </ol>
+          <div class="callout stop"><b>Não passe de 10–12 dias.</b> Café em maceração longa demais libera taninos e amarga, igual semente de fruta em excesso.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="when">Dia 10<em>30 minutos</em></div>
+        <div>
+          <h3>Coar e filtrar</h3>
+          <ol>
+            <li>Passe pela peneira fina, depois pelo pano ou filtro de café.</li>
+            <li><strong>Pressione de leve</strong> — nunca esprema com força, senão passa pó de café fino junto.</li>
+            <li>Reserve o líquido filtrado.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="when">Dia 10<em>15 minutos</em></div>
+        <div>
+          <h3>Calda pérola</h3>
+          <ol>
+            <li>Misture a água e o açúcar em uma panela.</li>
+            <li>Leve ao fogo baixo e deixe <strong>ferver por 5 minutos</strong>.</li>
+            <li><strong>Esfrie por completo</strong> até a temperatura ambiente antes do próximo passo.</li>
+          </ol>
+          <div class="callout stop"><b>Calda quente na bebida alcoólica evapora álcool</b> e cozinha o aroma do café. Espere esfriar de verdade.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="when">Dia 10<em>10 minutos</em></div>
+        <div>
+          <h3>Misturar e engarrafar</h3>
+          <ol>
+            <li>Adicione a calda já fria ao licor filtrado.</li>
+            <li>Mexa bem até incorporar.</li>
+            <li>Engarrafe até o gargalo — menos ar, menos oxidação.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="when">Opcional<em>3–7 dias</em></div>
+        <div>
+          <h3>Descansar</h3>
+          <p>A receita permite consumir assim que engarrafado, mas um breve descanso arredonda o sabor e integra melhor a calda ao licor. <strong>Agite antes de servir</strong> — partículas finas de café tendem a sedimentar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TESTES ================= -->
+    <section id="testes">
+      <h2>Testes de qualidade</h2>
+      <p class="h2-note">Faça no dia do engarrafamento e de novo depois de alguns dias de descanso.</p>
+      <div class="checks">
+        <div class="check">
+          <h4>Cor</h4>
+          <p>Marrom translúcido. Um sedimento fino no fundo, depois de dias parado, é normal.</p>
+          <p class="bad">Muito turvo logo após coar → filtre de novo, com filtro de papel.</p>
+        </div>
+        <div class="check">
+          <h4>Aroma</h4>
+          <p>Café e canela evidentes, baunilha em segundo plano.</p>
+          <p class="bad">Só cheiro de álcool → maceração curta ou pouco café para o volume.</p>
+        </div>
+        <div class="check">
+          <h4>Sabor</h4>
+          <p>Doce equilibrado, amargor discreto do café no final.</p>
+          <p class="bad">Amargor forte → torra muito escura ou maceração além de 12 dias.</p>
+        </div>
+        <div class="check">
+          <h4>Corpo</h4>
+          <p>Encorpado, com leve viscosidade da calda.</p>
+          <p class="bad">Aguado → calda incompleta ou açúcar de menos.</p>
+        </div>
+        <div class="check">
+          <h4>Ardência</h4>
+          <p>Deve aquecer, não queimar a garganta.</p>
+          <p class="bad">Queima → normal em ABV mais alto; ajuste a água/calda na próxima batelada.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ARMAZENAMENTO ================= -->
+    <section id="armazenamento">
+      <h2>Armazenamento</h2>
+      <table>
+        <thead><tr><th style="width:26%">Fator</th><th>O que fazer</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Recipiente</strong></td><td>Vidro, de preferência <strong>âmbar</strong> ou guardado no escuro. Luz encurta a validade do aroma de café.</td></tr>
+          <tr><td><strong>Vedação</strong></td><td>Tampa hermética. Encha até o gargalo: menos oxigênio, mais tempo de vida.</td></tr>
+          <tr><td><strong>Antes de servir</strong></td><td><strong>Agite a garrafa.</strong> Partículas finas de café sedimentam com o tempo — é normal, não é estrago.</td></tr>
+          <tr><td><strong>Temperatura</strong></td><td>Ambiente, longe de luz e calor direto.</td></tr>
+          <tr><td><strong>Validade</strong></td><td>Consumir em até <strong>12 meses</strong>.</td></tr>
+          <tr><td><strong>Rendimento</strong></td><td>~800 ml para cada 500 ml de destilado, escalando com a calculadora.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ================= PROBLEMAS ================= -->
+    <section id="problemas">
+      <h2>Problemas e soluções</h2>
+      <p class="h2-note">Quase tudo tem conserto. O amargor de torra muito escura não tem.</p>
+      <table>
+        <thead>
+          <tr><th style="width:22%">Sintoma</th><th style="width:28%">Causa</th><th>O que fazer</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Muito amargo</strong></td>
+            <td class="cause">Café de torra muito escura, ou maceração além de 10–12 dias</td>
+            <td><strong>Sem conserto total.</strong> Dá para mascarar com mais calda na próxima batelada; na batelada atual, reduza o tempo de maceração.</td>
+          </tr>
+          <tr>
+            <td><strong>Turvo, não filtra</strong></td>
+            <td class="cause">Canela em pó usada em vez de pau, ou pano grosso demais</td>
+            <td>Filtre de novo com filtro de papel de café. Prevenção: sempre canela em rama.</td>
+          </tr>
+          <tr>
+            <td><strong>Sedimento constante</strong></td>
+            <td class="cause">Partículas finas de café moído ou solúvel</td>
+            <td>Decante antes de servir, ou prefira café em grão — filtra mais limpo.</td>
+          </tr>
+          <tr>
+            <td><strong>Pouco sabor de café</strong></td>
+            <td class="cause">Café velho, pouco fresco, ou proporção baixa para o destilado</td>
+            <td>Aumente a quantidade de café na próxima batelada; prefira grão a solúvel.</td>
+          </tr>
+          <tr>
+            <td><strong>Açúcar cristalizado no fundo</strong></td>
+            <td class="cause">Calda não dissolveu por completo, ou foi misturada quente</td>
+            <td>Sempre esfrie a calda por completo antes de misturar, e mexa bem ao engarrafar.</td>
+          </tr>
+          <tr>
+            <td><strong>Muito forte, "queima"</strong></td>
+            <td class="cause">ABV alto (~25%) é esperado nessa proporção</td>
+            <td>Normal para a receita padrão. Para mais suave, aumente a água da calda na próxima batelada.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ================= COQUETÉIS ================= -->
+    <section id="coqueteis">
+      <h2>O que fazer com ele</h2>
+      <p class="h2-note">Do mais simples ao mais elaborado.</p>
+      <table>
+        <thead><tr><th style="width:22%">Drinque</th><th style="width:38%">Receita</th><th>Nota</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Puro, gelado</strong></td>
+            <td>40 ml · direto do freezer</td>
+            <td>Com ~25% ABV não congela. É o teste mais direto do sabor.</td>
+          </tr>
+          <tr>
+            <td><strong>Licor com leite</strong></td>
+            <td>40 ml do licor · 100 ml de leite integral gelado</td>
+            <td>Simples e cremoso, ótimo depois do jantar.</td>
+          </tr>
+          <tr>
+            <td><strong>Espresso martini caseiro</strong></td>
+            <td>50 ml do licor · 30 ml de vodka · 30 ml de café espresso frio · shake com gelo</td>
+            <td>Coe duas vezes para ficar sem espuma de café residual.</td>
+          </tr>
+          <tr>
+            <td><strong>Affogato adulto</strong></td>
+            <td>Uma dose do licor sobre uma bola de sorvete de creme</td>
+            <td>Sobremesa rápida — o licor já carrega canela e baunilha.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout"><b>Sobrou canela e café da coa?</b> Descarte — já cederam o que tinham. O sabor todo já está no licor.</div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Feito para uma batelada de 500 ml de destilado (cachaça, vodka, rum ou gin) · café, canela e baunilha. Os números da calculadora são exatos — o resto é paciência.
+</footer>
+
+<script>
+(function(){
+  var destiladoEl = document.getElementById('destilado');
+  var state = { destilado:500, tipoCafe:'grao', doce:1.0 };
+
+  var cafeFactor = { grao:0.15, moido:0.10, soluvel:0.05 };
+  var cafeLabel  = { grao:'grão', moido:'moído', soluvel:'solúvel' };
+
+  var out = {
+    cafe:     document.getElementById('o-cafe'),
+    cafeNote: document.getElementById('o-cafe-note'),
+    canela:   document.getElementById('o-canela'),
+    baunilha: document.getElementById('o-baunilha'),
+    acucar:   document.getElementById('o-acucar'),
+    agua:     document.getElementById('o-agua'),
+    final:    document.getElementById('o-final'),
+    garrafas: document.getElementById('o-garrafas'),
+    abv:      document.getElementById('o-abv'),
+    warn:     document.getElementById('warn')
+  };
+
+  function fmtL(ml){
+    if(ml >= 1000) return (ml/1000).toFixed(2).replace('.',',') + ' L';
+    return Math.round(ml) + ' ml';
+  }
+
+  function render(){
+    var d = state.destilado;
+
+    var cafe = d * cafeFactor[state.tipoCafe];
+    var canela = Math.max(0.5, Math.round((d/500) * 2) / 2);
+    var baunilha = d / 500;
+    var acucar = d * state.doce;
+    var agua = acucar * 0.4;
+    var final = d + agua + acucar * 0.2;
+    var abv = (d * 0.40 / final) * 100;
+    var garrafas = final / 700;
+
+    out.cafe.textContent = Math.round(cafe) + ' g';
+    var alts = Object.keys(cafeFactor)
+      .filter(function(k){ return k !== state.tipoCafe; })
+      .map(function(k){ return Math.round(d * cafeFactor[k]) + 'g ' + cafeLabel[k]; });
+    out.cafeNote.textContent = '≈ ' + alts.join(' · ');
+
+    out.canela.textContent = (canela % 1 === 0 ? canela.toFixed(0) : canela.toFixed(1)).replace('.',',') + (canela === 1 ? ' unidade' : ' unidades');
+
+    out.baunilha.textContent = baunilha.toFixed(1).replace('.',',') + ' colher(es) de sopa';
+
+    out.acucar.textContent = acucar >= 1000
+      ? (acucar/1000).toFixed(2).replace('.',',') + ' kg'
+      : Math.round(acucar) + ' g';
+
+    out.agua.textContent = fmtL(agua);
+    out.final.textContent = fmtL(final);
+    out.garrafas.textContent = '≈ ' + garrafas.toFixed(1).replace('.',',') + ' garrafas de 700 ml';
+    out.abv.textContent = abv.toFixed(1).replace('.',',') + '%';
+
+    out.warn.textContent = 'Para ' + d + ' ml de destilado, use ' + Math.round(cafe) + ' g de café ' + cafeLabel[state.tipoCafe] + '. Envolva o vidro em papel alumínio antes da maceração — a luz opaca protege o aroma do café tanto quanto no licor de fruta.';
+  }
+
+  destiladoEl.addEventListener('input', function(){
+    var v = parseInt(destiladoEl.value, 10);
+    if(!isNaN(v) && v > 0){ state.destilado = v; render(); }
+  });
+
+  document.querySelectorAll('.seg button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var key = btn.dataset.tipo ? 'tipoCafe' : 'doce';
+      var raw = btn.dataset.tipo || btn.dataset.doce;
+      var val = key === 'doce' ? parseFloat(raw) : raw;
+      state[key] = val;
+      btn.parentElement.querySelectorAll('button').forEach(function(b){
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      render();
+    });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frango Alfredo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1E1A14;
+    --rind:#D9A441;
+    --pulp:#96661C;
+    --crust:#EFE3C4;
+    --paper:#FBF7EC;
+    --alert:#C1443A;
+    --line:rgba(35,21,12,.14);
+    --muted:#6A6152;
+    --soft:#F2E8CF;
+    --rail:260px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Inter,system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--ink);
+    color:var(--paper);
+    padding:clamp(48px,8vw,96px) clamp(20px,5vw,64px) clamp(40px,6vw,72px);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-12%;
+    top:-28%;
+    width:min(560px,70vw);
+    aspect-ratio:1/1;
+    border-radius:50%;
+    background:radial-gradient(circle at 50% 50%, var(--rind) 0%, var(--pulp) 52%, var(--crust) 53%, #FBF7EC 70%, transparent 71%);
+    opacity:.18;
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--rind);
+    margin-bottom:20px;
+  }
+  h1{
+    font-family:Fraunces,serif;
+    font-weight:300;
+    font-size:clamp(38px,7vw,82px);
+    line-height:1.02;
+    letter-spacing:-.02em;
+    max-width:16ch;
+  }
+  h1 em{
+    font-style:normal;
+    font-weight:700;
+    color:var(--rind);
+  }
+  .hero-sub{
+    margin-top:26px;
+    max-width:54ch;
+    color:#BDB3A5;
+    font-size:16px;
+  }
+  .specs{
+    margin-top:44px;
+    display:flex;
+    flex-wrap:wrap;
+    border-top:1px solid rgba(252,246,238,.18);
+    max-width:760px;
+  }
+  .spec{
+    padding:18px 28px 4px 0;
+    margin-right:28px;
+    border-right:1px solid rgba(252,246,238,.12);
+  }
+  .spec:last-child{border-right:none}
+  .spec b{
+    display:block;
+    font-family:Fraunces,serif;
+    font-size:26px;
+    font-weight:500;
+    color:var(--paper);
+    line-height:1.2;
+  }
+  .spec span{
+    font-size:10px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#8F8578;
+  }
+
+  /* ---------- SHELL ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail) 1fr;
+    max-width:1320px;
+    margin:0 auto;
+  }
+  .rail{
+    border-right:1px solid var(--line);
+    padding:48px 24px 48px 0;
+  }
+  .rail-inner{position:sticky;top:32px}
+  .rail-title{
+    font-size:10px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:600;
+    padding-left:20px;
+    margin-bottom:18px;
+  }
+  .rail a{
+    display:block;
+    text-decoration:none;
+    color:var(--ink);
+    font-size:14px;
+    padding:9px 0 9px 20px;
+    border-left:2px solid transparent;
+    transition:border-color .18s, color .18s;
+  }
+  .rail a small{
+    display:block;
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:600;
+  }
+  .rail a:hover,.rail a:focus-visible{border-left-color:var(--pulp);color:var(--pulp)}
+
+  main{padding:48px clamp(20px,4vw,56px) 100px;min-width:0}
+
+  section{padding-bottom:64px;scroll-margin-top:24px}
+  h2{
+    font-family:Fraunces,serif;
+    font-weight:500;
+    font-size:clamp(26px,3.4vw,38px);
+    letter-spacing:-.01em;
+    margin-bottom:6px;
+  }
+  .h2-note{color:var(--muted);font-size:14px;margin-bottom:28px;max-width:68ch}
+  h3{
+    font-family:Fraunces,serif;
+    font-weight:600;
+    font-size:19px;
+    margin:26px 0 10px;
+  }
+  p{margin-bottom:12px;max-width:68ch}
+  strong{font-weight:600}
+
+  /* ---------- INGREDIENTS ---------- */
+  .kit{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;background:var(--line);margin-top:10px}
+  .kit > div{background:var(--paper);padding:22px 20px}
+  .kit h4{
+    font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--pulp);font-weight:700;margin-bottom:14px;
+  }
+  .kit ul{list-style:none;margin:0}
+  .kit li{font-size:15px;margin-bottom:10px}
+  .kit label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+  .kit input[type=checkbox]{
+    appearance:none;-webkit-appearance:none;
+    flex:none;width:18px;height:18px;margin-top:3px;
+    border:1.5px solid var(--pulp);border-radius:3px;
+    background:var(--paper);cursor:pointer;
+    display:grid;place-content:center;
+  }
+  .kit input[type=checkbox]::after{
+    content:"";width:10px;height:10px;border-radius:1px;
+    background:var(--pulp);transform:scale(0);transition:transform .12s;
+  }
+  .kit input[type=checkbox]:checked::after{transform:scale(1)}
+  .kit input[type=checkbox]:focus-visible{outline:2px solid var(--rind);outline-offset:2px}
+  .kit input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--rind)}
+  .kit .qty{font-weight:600}
+  .reset{
+    margin-top:14px;
+    background:none;border:none;
+    font:inherit;font-size:13px;color:var(--muted);
+    text-decoration:underline;cursor:pointer;
+  }
+  .reset:hover{color:var(--pulp)}
+
+  /* ---------- CONVERSOR ---------- */
+  .calc{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:4px;
+    padding:clamp(20px,3.5vw,34px);
+    margin-bottom:28px;
+  }
+  .calc-top{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-end}
+  .calc .lbl{
+    display:block;
+    font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+    color:#8F8578;font-weight:600;margin-bottom:8px;
+  }
+  .stepper{display:flex;align-items:center;gap:0;border:1px solid rgba(252,246,238,.28);border-radius:3px;overflow:hidden}
+  .stepper button{
+    background:transparent;border:none;color:var(--paper);
+    font:600 22px/1 Inter,sans-serif;width:48px;height:52px;cursor:pointer;
+  }
+  .stepper button:hover{background:rgba(252,246,238,.08)}
+  .stepper button:focus-visible,.stepper input:focus-visible,.presets button:focus-visible{outline:2px solid var(--rind);outline-offset:2px}
+  .stepper input{
+    width:72px;height:52px;text-align:center;
+    background:transparent;border:none;
+    border-left:1px solid rgba(252,246,238,.28);border-right:1px solid rgba(252,246,238,.28);
+    color:var(--rind);font:500 30px Fraunces,serif;
+    -moz-appearance:textfield;
+  }
+  .stepper input::-webkit-outer-spin-button,.stepper input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .presets{display:flex;flex-wrap:wrap;gap:6px}
+  .presets button{
+    background:transparent;border:1px solid rgba(252,246,238,.28);border-radius:999px;
+    color:#BDB3A5;font:600 12px Inter,sans-serif;padding:8px 14px;cursor:pointer;
+  }
+  .presets button[aria-pressed=true]{background:var(--rind);border-color:var(--rind);color:var(--ink)}
+  .calc-out{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:2px;margin-top:24px;background:rgba(252,246,238,.14);
+  }
+  .out{background:var(--ink);padding:16px}
+  .out span{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8F8578;font-weight:600;margin-bottom:6px}
+  .out b{font:500 26px/1.1 Fraunces,serif;color:var(--paper);display:block}
+  .out.key b{color:var(--rind)}
+  .out i{font-style:normal;font-size:11px;color:#8F8578;display:block;margin-top:4px}
+  .calc-note{margin-top:18px;font-size:13px;color:#BDB3A5;padding-left:14px;border-left:2px solid var(--rind);max-width:70ch}
+  .qty.changed,.qty-soft.changed,[data-q].changed{background:var(--soft);border-radius:2px;box-shadow:0 0 0 2px var(--soft)}
+
+  /* ---------- STEPS ---------- */
+  .step{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .step:last-child{border-bottom:1px solid var(--line)}
+  .when{
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--pulp);
+    line-height:1.5;
+    padding-top:3px;
+  }
+  .when em{
+    font-style:normal;
+    display:block;
+    color:var(--muted);
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:none;
+    font-size:11px;
+    margin-top:3px;
+  }
+  .step h3{margin-top:0}
+  ol{margin:8px 0 0 18px}
+  li{margin-bottom:7px;max-width:66ch}
+  .callout{
+    background:var(--soft);
+    border-left:3px solid var(--pulp);
+    padding:13px 16px;
+    margin-top:14px;
+    font-size:14px;
+    max-width:66ch;
+    border-radius:0 3px 3px 0;
+  }
+  .callout b{color:var(--pulp)}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:32px clamp(20px,4vw,56px);
+    font-size:12px;
+    color:var(--muted);
+    max-width:1320px;
+    margin:0 auto;
+  }
+  footer a{color:var(--muted)}
+
+  @media(max-width:900px){
+    .shell{grid-template-columns:1fr}
+    .rail{
+      border-right:none;
+      border-bottom:1px solid var(--line);
+      padding:20px clamp(16px,5vw,32px);
+      overflow-x:auto;
+    }
+    .rail-inner{position:static;display:flex;gap:6px;min-width:max-content}
+    .rail-title{display:none}
+    .rail a{padding:8px 14px;border-left:none;border-bottom:2px solid transparent;white-space:nowrap}
+    .rail a small{display:none}
+    .rail a:hover{border-left-color:transparent;border-bottom-color:var(--pulp)}
+    .step{grid-template-columns:1fr;gap:8px}
+    .when{padding-top:0}
+    .when em{display:inline;margin-left:8px}
+    main{padding-left:16px;padding-right:16px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Receita · Massa</div>
+  <h1>Frango <em>Alfredo</em> cremoso.</h1>
+  <p class="hero-sub">Massa com molho Alfredo aveludado de manteiga, alho, creme de leite e parmesão, com 1 kg de frango dourado e suculento — começando o molho no fundinho da panela do frango.</p>
+  <div class="specs">
+    <div class="spec"><b>5 pessoas</b><span>Rendimento base</span></div>
+    <div class="spec"><b>1 kg</b><span>Peito de frango</span></div>
+    <div class="spec"><b>500 g</b><span>Fettuccine ou penne</span></div>
+    <div class="spec"><b>~40 min</b><span>Tempo total</span></div>
+    <div class="spec"><b>4 etapas</b><span>Frango · massa · molho · finalizar</span></div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="rail" aria-label="Seções">
+    <div class="rail-inner">
+      <div class="rail-title">Índice</div>
+      <a href="#ingredientes"><small>Comece aqui</small>Porções e ingredientes</a>
+      <a href="#frango"><small>Etapa 1</small>Frango</a>
+      <a href="#massa"><small>Etapa 2</small>Massa</a>
+      <a href="#molho"><small>Etapa 3</small>Molho Alfredo</a>
+      <a href="#finalizar"><small>Etapa 4</small>Misturar e servir</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ================= INGREDIENTES ================= -->
+    <section id="ingredientes">
+      <h2>Ingredientes</h2>
+      <p class="h2-note">Ajuste para quantas pessoas vai servir e marque cada item conforme for separando — a lista lembra o que você já marcou neste navegador.</p>
+
+      <div class="calc" id="conversor">
+        <div class="calc-top">
+          <div>
+            <label class="lbl" for="pessoas">Quantas pessoas?</label>
+            <div class="stepper">
+              <button type="button" id="menos" aria-label="Menos uma pessoa">−</button>
+              <input type="number" id="pessoas" value="5" min="1" max="30" step="1" inputmode="numeric">
+              <button type="button" id="mais" aria-label="Mais uma pessoa">+</button>
+            </div>
+          </div>
+          <div>
+            <span class="lbl">Atalhos</span>
+            <div class="presets" role="group" aria-label="Atalhos de quantidade">
+              <button type="button" data-p="2">2</button>
+              <button type="button" data-p="4">4</button>
+              <button type="button" data-p="5" aria-pressed="true">5 · receita original</button>
+              <button type="button" data-p="8">8</button>
+              <button type="button" data-p="10">10</button>
+            </div>
+          </div>
+        </div>
+        <div class="calc-out">
+          <div class="out key"><span>Multiplicador</span><b id="o-fator">1×</b><i>sobre a receita original</i></div>
+          <div class="out key"><span>Frango</span><b id="o-frango">1 kg</b><i id="o-pp">200 g por pessoa</i></div>
+          <div class="out"><span>Dourar em</span><b id="o-lotes">2 levas</b><i>de ~500 g numa frigideira grande</i></div>
+          <div class="out"><span>Água do macarrão</span><b id="o-agua">1 xícara</b><i>reservar antes de escorrer</i></div>
+        </div>
+        <p class="calc-note" id="o-nota">A receita original serve 5 pessoas com porções generosas.</p>
+      </div>
+      <div class="kit">
+        <div>
+          <h4>Frango</h4>
+          <ul>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="1000" data-u="g">1 kg</span> de peito de frango em cubos ou tiras</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="1" data-u="dente">1 dente</span> de alho picado</span></label></li>
+            <li><label><input type="checkbox"><span>Sal, pimenta-do-reino e páprica <span class="qty">a gosto</span></span></label></li>
+            <li><label><input type="checkbox"><span>Azeite <span class="qty">um fio</span></span></label></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Massa</h4>
+          <ul>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="500" data-u="g">500 g</span> de fettuccine ou penne</span></label></li>
+            <li><label><input type="checkbox"><span>Sal para a água <span class="qty">a gosto</span></span></label></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Molho Alfredo</h4>
+          <ul>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="3" data-q2="4" data-u="sopa">3 a 4 colheres (sopa)</span> de manteiga</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="2" data-u="dente">2 dentes</span> de alho picados</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="2" data-u="cx">2 caixinhas (400 g)</span> de creme de leite</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="1.5" data-u="xic">1 e ½ xícara</span> de parmesão ralado, de boa qualidade</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="1" data-u="xic">1 xícara</span> da água quente do cozimento do macarrão</span></label></li>
+          </ul>
+        </div>
+      </div>
+      <button class="reset" type="button" id="reset">Desmarcar tudo</button>
+    </section>
+
+    <!-- ================= PREPARO ================= -->
+    <section id="frango">
+      <h2>Modo de preparo</h2>
+      <p class="h2-note">Use uma panela grande e funda: o frango doura nela e o molho é feito no mesmo fundinho.</p>
+
+      <div class="step">
+        <div class="when">Etapa 1<em>~12 min</em></div>
+        <div>
+          <h3>Prepare o frango</h3>
+          <ol>
+            <li>Tempere o frango (<span data-q="1000" data-u="g">1 kg</span>) com sal, pimenta-do-reino, páprica e <span data-q="1" data-u="dente">1 dente</span> de alho picado.</li>
+            <li>Em uma frigideira grande ou panela funda, doure o frango em <strong>fogo alto</strong> com um fio de azeite até ficar bem cozido e levemente dourado.</li>
+            <li>Retire o frango da panela e reserve. <strong>Não lave a panela.</strong></li>
+          </ol>
+          <div class="callout" id="lotes-callout"><b>Não lote a panela:</b> doure em levas (cerca de 500 g por vez) para o frango dourar em vez de cozinhar no próprio suco.</div>
+        </div>
+      </div>
+
+      <div class="step" id="massa">
+        <div class="when">Etapa 2<em>tempo da embalagem</em></div>
+        <div>
+          <h3>Cozinhe a massa</h3>
+          <ol>
+            <li>Em uma panela com água fervente e bastante sal, cozinhe os <span data-q="500" data-u="g">500 g</span> de macarrão até ficar <strong>al dente</strong>.</li>
+            <li>Antes de escorrer, <strong>reserve <span data-q="1" data-u="xic">1 xícara</span> da água do cozimento</strong>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="step" id="molho">
+        <div class="when">Etapa 3<em>~8 min</em></div>
+        <div>
+          <h3>Molho Alfredo</h3>
+          <ol>
+            <li>Na mesma panela onde o frango dourou, derreta a manteiga e refogue os <span data-q="2" data-u="dente">2 dentes</span> de alho restantes por <strong>1 minuto</strong>.</li>
+            <li>Abaixe o fogo, acrescente o creme de leite (<span data-q="2" data-u="cx">2 caixinhas (400 g)</span>) e mexa bem.</li>
+            <li>Adicione o parmesão ralado e <strong>metade da água do macarrão</strong> reservada, mexendo até derreter e formar um molho aveludado.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="step" id="finalizar">
+        <div class="when">Etapa 4<em>~3 min</em></div>
+        <div>
+          <h3>Misture e sirva</h3>
+          <ol>
+            <li>Junte o macarrão escorrido e o frango reservado à panela com o molho.</li>
+            <li>Misture bem, ajustando a cremosidade com o <strong>restante da água do macarrão</strong>, se necessário.</li>
+            <li>Acerte o sal, polvilhe pimenta-do-reino a gosto e <strong>sirva imediatamente</strong>.</li>
+          </ol>
+          <div class="callout"><b>Dica de ouro:</b> o frango solta bastante suco na frigideira — aproveite esse fundinho que fica na panela para começar o molho Alfredo. Dá um sabor espetacular à receita.</div>
+          <div class="callout"><b>Acompanha bem:</b> salada verde ou pão de alho.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Frango Alfredo · receita base para 5 pessoas com 1 kg de frango. <a href="index.html">&larr; Voltar ao índice</a>
+</footer>
+
+<script>
+(function(){
+  var KEY = 'frango-alfredo-checks';
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('#ingredientes input[type=checkbox]'));
+  var saved = [];
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch(e) {}
+  boxes.forEach(function(b, i){
+    b.checked = saved.indexOf(i) !== -1;
+    b.addEventListener('change', save);
+  });
+  function save(){
+    var on = [];
+    boxes.forEach(function(b, i){ if(b.checked) on.push(i); });
+    try { localStorage.setItem(KEY, JSON.stringify(on)); } catch(e) {}
+  }
+  document.getElementById('reset').addEventListener('click', function(){
+    boxes.forEach(function(b){ b.checked = false; });
+    save();
+  });
+
+  /* ---------- conversor de porções ---------- */
+  var BASE = 5;
+  var input = document.getElementById('pessoas');
+  var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-q]'));
+  var FRACS = [[0,''],[.25,'¼'],[1/3,'⅓'],[.5,'½'],[2/3,'⅔'],[.75,'¾'],[1,'']];
+
+  function frac(v){
+    var whole = Math.floor(v), rest = v - whole, best = FRACS[0];
+    FRACS.forEach(function(f){ if(Math.abs(f[0]-rest) < Math.abs(best[0]-rest)) best = f; });
+    if(best[0] === 1){ whole += 1; best = FRACS[0]; }
+    var txt = whole && best[1] ? whole + ' e ' + best[1] : (whole ? String(whole) : best[1]);
+    return { txt: txt || '¼', n: whole + best[0] };
+  }
+  function grams(q){
+    var g = Math.round(q/50)*50 || 50;
+    if(g >= 1000) return (Math.round(g/100)/10).toString().replace('.', ',') + ' kg';
+    return g + ' g';
+  }
+  function fmt(q, u, q2){
+    if(u === 'g') return grams(q);
+    if(u === 'dente'){
+      var d = Math.max(1, Math.round(q));
+      return d + (d === 1 ? ' dente' : ' dentes');
+    }
+    if(u === 'cx'){
+      var c = Math.max(.5, Math.round(q*2)/2);
+      var f = frac(c);
+      return f.txt + (c >= 2 ? ' caixinhas' : ' caixinha') + ' (' + grams(c*200) + ')';
+    }
+    if(u === 'xic'){
+      var x = frac(q);
+      return x.txt + (x.n >= 2 ? ' xícaras' : ' xícara');
+    }
+    // colheres de sopa, com faixa opcional
+    if(q2 != null){
+      var lo = Math.max(1, Math.round(q)), hi = Math.max(lo, Math.round(q2));
+      return (hi > lo ? lo + ' a ' + hi : lo) + (hi >= 2 ? ' colheres' : ' colher') + ' (sopa)';
+    }
+    var a = frac(q);
+    return a.txt + (a.n >= 2 ? ' colheres' : ' colher') + ' (sopa)';
+  }
+
+  function render(p){
+    var k = p / BASE;
+    nodes.forEach(function(n){
+      var q2 = n.dataset.q2 != null ? parseFloat(n.dataset.q2) * k : null;
+      n.textContent = fmt(parseFloat(n.dataset.q) * k, n.dataset.u, q2);
+      n.classList.toggle('changed', k !== 1);
+    });
+
+    var frango = 1000 * k;
+    var lotes = Math.max(1, Math.ceil(Math.round(frango/50)*50 / 500));
+    document.getElementById('o-fator').textContent = (Math.round(k*100)/100).toString().replace('.', ',') + '×';
+    document.getElementById('o-frango').textContent = grams(frango);
+    document.getElementById('o-lotes').textContent = lotes + (lotes === 1 ? ' leva' : ' levas');
+    document.getElementById('o-agua').textContent = fmt(k, 'xic');
+
+    var nota;
+    if(k === 1) nota = 'A receita original serve 5 pessoas com porções generosas.';
+    else if(p > 10) nota = 'Para ' + p + ' pessoas, o molho e a massa podem não caber em uma panela só: faça o molho em duas panelas e divida a massa e o frango entre elas.';
+    else nota = 'Quantidades para ' + p + (p === 1 ? ' pessoa' : ' pessoas') + '. Os tempos de cozimento do molho e da massa não mudam; só o frango leva mais ou menos levas.';
+    document.getElementById('o-nota').textContent = nota;
+
+    document.querySelectorAll('.presets button').forEach(function(b){
+      b.setAttribute('aria-pressed', parseInt(b.dataset.p, 10) === p ? 'true' : 'false');
+    });
+  }
+
+  function set(p){
+    p = Math.min(30, Math.max(1, Math.round(p) || BASE));
+    input.value = p;
+    render(p);
+  }
+  input.addEventListener('input', function(){
+    var v = parseInt(input.value, 10);
+    if(!isNaN(v) && v >= 1 && v <= 30) render(v);
+  });
+  input.addEventListener('change', function(){ set(parseInt(input.value, 10)); });
+  document.getElementById('menos').addEventListener('click', function(){ set(parseInt(input.value, 10) - 1); });
+  document.getElementById('mais').addEventListener('click', function(){ set(parseInt(input.value, 10) + 1); });
+  document.querySelectorAll('.presets button').forEach(function(b){
+    b.addEventListener('click', function(){ set(parseInt(b.dataset.p, 10)); });
+  });
+  render(BASE);
+})();
+</script>
+</body>
+</html>

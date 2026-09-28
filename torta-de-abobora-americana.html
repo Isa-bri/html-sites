@@ -200,6 +200,53 @@
   }
   .reset:hover{color:var(--pulp)}
 
+  /* ---------- CONVERSOR ---------- */
+  .calc{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:4px;
+    padding:clamp(20px,3.5vw,34px);
+    margin-bottom:28px;
+  }
+  .calc-top{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-end}
+  .calc .lbl{
+    display:block;
+    font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+    color:#8F8578;font-weight:600;margin-bottom:8px;
+  }
+  .stepper{display:flex;align-items:center;gap:0;border:1px solid rgba(252,246,238,.28);border-radius:3px;overflow:hidden}
+  .stepper button{
+    background:transparent;border:none;color:var(--paper);
+    font:600 22px/1 Inter,sans-serif;width:48px;height:52px;cursor:pointer;
+  }
+  .stepper button:hover{background:rgba(252,246,238,.08)}
+  .stepper button:focus-visible,.stepper input:focus-visible,.presets button:focus-visible{outline:2px solid var(--rind);outline-offset:2px}
+  .stepper input{
+    width:72px;height:52px;text-align:center;
+    background:transparent;border:none;
+    border-left:1px solid rgba(252,246,238,.28);border-right:1px solid rgba(252,246,238,.28);
+    color:var(--rind);font:500 30px Fraunces,serif;
+    -moz-appearance:textfield;
+  }
+  .stepper input::-webkit-outer-spin-button,.stepper input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .presets{display:flex;flex-wrap:wrap;gap:6px}
+  .presets button{
+    background:transparent;border:1px solid rgba(252,246,238,.28);border-radius:999px;
+    color:#BDB3A5;font:600 12px Inter,sans-serif;padding:8px 14px;cursor:pointer;
+  }
+  .presets button[aria-pressed=true]{background:var(--rind);border-color:var(--rind);color:var(--ink)}
+  .calc-out{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:2px;margin-top:24px;background:rgba(252,246,238,.14);
+  }
+  .out{background:var(--ink);padding:16px}
+  .out span{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8F8578;font-weight:600;margin-bottom:6px}
+  .out b{font:500 26px/1.1 Fraunces,serif;color:var(--paper);display:block}
+  .out.key b{color:var(--rind)}
+  .out i{font-style:normal;font-size:11px;color:#8F8578;display:block;margin-top:4px}
+  .calc-note{margin-top:18px;font-size:13px;color:#BDB3A5;padding-left:14px;border-left:2px solid var(--rind);max-width:70ch}
+  .qty.changed,.qty-soft.changed,[data-cm].changed{background:var(--soft);border-radius:2px;box-shadow:0 0 0 2px var(--soft)}
+
   /* ---------- STEPS ---------- */
   .step{
     display:grid;
@@ -280,6 +327,7 @@
   <h1>Torta de <em>abóbora</em> americana.</h1>
   <p class="hero-sub">Massa podre amanteigada, pré-assada até dourar, com recheio cremoso de purê de cabotiá, açúcar demerara, especiarias e creme de leite fresco.</p>
   <div class="specs">
+    <div class="spec"><b>~8 fatias</b><span>Rendimento base</span></div>
     <div class="spec"><b>22 cm</b><span>Forma de fundo falso</span></div>
     <div class="spec"><b>180 °C</b><span>Forno</span></div>
     <div class="spec"><b>~2h30</b><span>Tempo total, com esperas</span></div>
@@ -291,7 +339,7 @@
   <nav class="rail" aria-label="Seções">
     <div class="rail-inner">
       <div class="rail-title">Índice</div>
-      <a href="#ingredientes"><small>Separe</small>Ingredientes</a>
+      <a href="#ingredientes"><small>Comece aqui</small>Porções e ingredientes</a>
       <a href="#massa"><small>Etapa 1</small>Massa</a>
       <a href="#pure"><small>Etapa 2</small>Purê de abóbora</a>
       <a href="#pre-assar"><small>Etapa 3</small>Pré-assar a massa</a>
@@ -304,34 +352,64 @@
     <!-- ================= INGREDIENTES ================= -->
     <section id="ingredientes">
       <h2>Ingredientes</h2>
-      <p class="h2-note">Marque cada item conforme for separando — a lista lembra o que você já marcou neste navegador.</p>
+      <p class="h2-note">Ajuste para quantas pessoas vai servir e marque cada item conforme for separando — a lista lembra o que você já marcou neste navegador.</p>
+
+      <div class="calc" id="conversor">
+        <div class="calc-top">
+          <div>
+            <label class="lbl" for="pessoas">Quantas pessoas?</label>
+            <div class="stepper">
+              <button type="button" id="menos" aria-label="Menos uma pessoa">−</button>
+              <input type="number" id="pessoas" value="8" min="2" max="40" step="1" inputmode="numeric">
+              <button type="button" id="mais" aria-label="Mais uma pessoa">+</button>
+            </div>
+          </div>
+          <div>
+            <span class="lbl">Atalhos</span>
+            <div class="presets" role="group" aria-label="Atalhos de quantidade">
+              <button type="button" data-p="4">4</button>
+              <button type="button" data-p="6">6</button>
+              <button type="button" data-p="8" aria-pressed="true">8 · receita original</button>
+              <button type="button" data-p="12">12</button>
+              <button type="button" data-p="16">16</button>
+            </div>
+          </div>
+        </div>
+        <div class="calc-out">
+          <div class="out key"><span>Multiplicador</span><b id="o-fator">1×</b><i>sobre a receita original</i></div>
+          <div class="out key"><span>Forma sugerida</span><b id="o-forma">22 cm</b><i id="o-forma-note">fundo falso</i></div>
+          <div class="out"><span>Abrir a massa até</span><b id="o-disco">28 cm</b><i>de diâmetro</i></div>
+          <div class="out"><span>Ovos no total</span><b id="o-ovos">4</b><i id="o-ovos-note">1 na massa · 3 no recheio</i></div>
+        </div>
+        <p class="calc-note" id="o-nota">A receita original rende cerca de 8 fatias em uma forma de 22 cm.</p>
+      </div>
       <div class="kit">
         <div>
           <h4>Massa</h4>
           <ul>
-            <li><label><input type="checkbox"><span><span class="qty">1 e ¾ xícara</span> de farinha de trigo sem fermento</span></label></li>
-            <li><label><input type="checkbox"><span><span class="qty">3 colheres (sopa)</span> de açúcar</span></label></li>
-            <li><label><input type="checkbox"><span><span class="qty">100 g</span> de manteiga sem sal gelada, em cubos</span></label></li>
-            <li><label><input type="checkbox"><span><span class="qty">1</span> ovo</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="1.75" data-u="xic">1 e ¾ xícara</span> de farinha de trigo sem fermento</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="3" data-u="sopa">3 colheres (sopa)</span> de açúcar</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="100" data-u="g">100 g</span> de manteiga sem sal gelada, em cubos</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="1" data-u="ovo">1 ovo</span></span></label></li>
           </ul>
         </div>
         <div>
           <h4>Purê de abóbora</h4>
           <ul>
-            <li><label><input type="checkbox"><span><span class="qty">350 g</span> de abóbora japonesa (cabotiá) em cubos (aprox. 2 e ½ xícaras)</span></label></li>
-            <li><label><input type="checkbox"><span><span class="qty">⅓ xícara</span> de água</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="350" data-u="g">350 g</span> de abóbora japonesa (cabotiá) em cubos (aprox. <span class="qty-soft" data-q="2.5" data-u="xic">2 e ½ xícaras</span>)</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="0.3333" data-u="xic">⅓ xícara</span> de água</span></label></li>
           </ul>
         </div>
         <div>
           <h4>Recheio</h4>
           <ul>
-            <li><label><input type="checkbox"><span><span class="qty">3</span> ovos</span></label></li>
-            <li><label><input type="checkbox"><span><span class="qty">¾ xícara</span> de açúcar demerara (ou cristal)</span></label></li>
-            <li><label><input type="checkbox"><span><span class="qty">1 e ½ colher (chá)</span> de canela em pó</span></label></li>
-            <li><label><input type="checkbox"><span><span class="qty">¼ colher (chá)</span> de gengibre em pó</span></label></li>
-            <li><label><input type="checkbox"><span><span class="qty">¼ colher (chá)</span> de pimenta-da-jamaica em pó</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="3" data-u="ovo">3 ovos</span></span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="0.75" data-u="xic">¾ xícara</span> de açúcar demerara (ou cristal)</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="1.5" data-u="cha">1 e ½ colher (chá)</span> de canela em pó</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="0.25" data-u="cha">¼ colher (chá)</span> de gengibre em pó</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="0.25" data-u="cha">¼ colher (chá)</span> de pimenta-da-jamaica em pó</span></label></li>
             <li><label><input type="checkbox"><span>Noz-moscada ralada <span class="qty">a gosto</span></span></label></li>
-            <li><label><input type="checkbox"><span><span class="qty">¾ xícara</span> de creme de leite fresco</span></label></li>
+            <li><label><input type="checkbox"><span><span class="qty" data-q="0.75" data-u="xic">¾ xícara</span> de creme de leite fresco</span></label></li>
           </ul>
         </div>
       </div>
@@ -374,8 +452,8 @@
           <h3>Pré-assar a massa</h3>
           <ol>
             <li>Pré-aqueça o forno a <strong>180 °C</strong>.</li>
-            <li>Abra a massa entre dois plásticos até atingir cerca de <strong>28 cm de diâmetro</strong>.</li>
-            <li>Coloque numa forma de fundo falso (22 cm de diâmetro), ajuste no fundo e laterais, e retire o excesso de borda.</li>
+            <li>Abra a massa entre dois plásticos até atingir cerca de <strong data-cm="28">28 cm</strong> <strong>de diâmetro</strong>.</li>
+            <li>Coloque numa forma de fundo falso (<span data-cm="22">22 cm</span> de diâmetro), ajuste no fundo e laterais, e retire o excesso de borda.</li>
             <li>Leve à geladeira por <strong>20 minutos</strong>.</li>
             <li>Cubra com papel-manteiga e feijões/pesos e asse a 180 °C por <strong>25 minutos</strong>. Retire o papel e os pesos e asse por mais <strong>5–10 minutos</strong> para dourar o fundo.</li>
           </ol>
@@ -388,7 +466,7 @@
           <h3>Recheio e finalização</h3>
           <ol>
             <li>Misture o açúcar demerara e as especiarias ao purê de abóbora.</li>
-            <li>Adicione os 3 ovos levemente batidos e misture delicadamente com espátula.</li>
+            <li>Adicione os <span data-q="3" data-u="ovo">3 ovos</span> levemente batidos e misture delicadamente com espátula.</li>
             <li>Adicione o creme de leite fresco e misture até ficar homogêneo.</li>
             <li>Despeje sobre a massa pré-assada e asse a 180 °C por <strong>cerca de 30 minutos</strong>.</li>
             <li>Deixe <strong>esfriar completamente</strong> antes de desenformar.</li>
@@ -424,6 +502,95 @@
     boxes.forEach(function(b){ b.checked = false; });
     save();
   });
+
+  /* ---------- conversor de porções ---------- */
+  var BASE = 8, FORMA = 22, DISCO = 28;
+  var PANS = [16, 18, 20, 22, 24, 26, 28, 30];
+  var input = document.getElementById('pessoas');
+  var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-q]'));
+  var cms = Array.prototype.slice.call(document.querySelectorAll('[data-cm]'));
+  var FRACS = [[0,''],[.25,'¼'],[1/3,'⅓'],[.5,'½'],[2/3,'⅔'],[.75,'¾'],[1,'']];
+
+  function frac(v){
+    var whole = Math.floor(v), rest = v - whole, best = FRACS[0];
+    FRACS.forEach(function(f){ if(Math.abs(f[0]-rest) < Math.abs(best[0]-rest)) best = f; });
+    if(best[0] === 1){ whole += 1; best = FRACS[0]; }
+    var txt = whole && best[1] ? whole + ' e ' + best[1] : (whole ? String(whole) : best[1]);
+    return { txt: txt || '¼', n: whole + best[0] };
+  }
+  function fmt(q, u){
+    if(u === 'g'){
+      var g = q < 50 ? Math.round(q) : Math.round(q/5)*5;
+      return g + ' g';
+    }
+    if(u === 'ovo'){
+      var o = Math.max(1, Math.round(q));
+      return o + (o === 1 ? ' ovo' : ' ovos');
+    }
+    if(u === 'cha' && q < 0.2) return 'uma pitada';
+    var f = frac(q);
+    if(u === 'xic') return f.txt + (f.n >= 2 ? ' xícaras' : ' xícara');
+    var kind = u === 'sopa' ? ' (sopa)' : ' (chá)';
+    return f.txt + (f.n >= 2 ? ' colheres' : ' colher') + kind;
+  }
+  function nearestPan(d){
+    return PANS.reduce(function(a, b){ return Math.abs(b-d) < Math.abs(a-d) ? b : a; });
+  }
+
+  function render(p){
+    var k = p / BASE;
+    nodes.forEach(function(n){
+      n.textContent = fmt(parseFloat(n.dataset.q) * k, n.dataset.u);
+      n.classList.toggle('changed', k !== 1);
+    });
+
+    // 1 torta até ~12 pessoas; acima disso, dividir em várias de 22 cm
+    var tortas = Math.max(1, Math.ceil(k / 1.5));
+    var porTorta = k / tortas;
+    var forma = nearestPan(FORMA * Math.sqrt(porTorta));
+    var disco = Math.round((forma + 6) / 2) * 2;
+    cms.forEach(function(n){
+      var base = parseInt(n.dataset.cm, 10);
+      n.textContent = (base === FORMA ? forma : disco) + ' cm';
+      n.classList.toggle('changed', forma !== FORMA);
+    });
+
+    var ovosMassa = Math.max(1, Math.round(k)), ovosRecheio = Math.max(1, Math.round(3*k));
+    var ovos = ovosMassa + ovosRecheio;
+    document.getElementById('o-ovos-note').textContent = ovosMassa + ' na massa · ' + ovosRecheio + ' no recheio';
+    document.getElementById('o-fator').textContent = (Math.round(k*100)/100).toString().replace('.', ',') + '×';
+    document.getElementById('o-forma').textContent = (tortas > 1 ? tortas + ' × ' : '') + forma + ' cm';
+    document.getElementById('o-forma-note').textContent = tortas > 1 ? 'formas de fundo falso' : 'fundo falso';
+    document.getElementById('o-disco').textContent = disco + ' cm' + (tortas > 1 ? ' cada' : '');
+    document.getElementById('o-ovos').textContent = ovos;
+
+    var nota;
+    if(k === 1) nota = 'A receita original rende cerca de 8 fatias em uma forma de 22 cm.';
+    else if(tortas > 1) nota = 'Para ' + p + ' pessoas, faça ' + tortas + ' tortas. As quantidades abaixo são o total — divida a massa e o recheio igualmente entre as formas. Os tempos de forno não mudam.';
+    else nota = 'Com forma de ' + forma + ' cm, os tempos de forno ficam parecidos; confira o ponto do recheio (bordas firmes, centro levemente trêmulo) alguns minutos antes' + (forma < FORMA ? ', porque formas menores assam mais rápido.' : '.');
+    document.getElementById('o-nota').textContent = nota;
+
+    document.querySelectorAll('.presets button').forEach(function(b){
+      b.setAttribute('aria-pressed', parseInt(b.dataset.p, 10) === p ? 'true' : 'false');
+    });
+  }
+
+  function set(p){
+    p = Math.min(40, Math.max(2, Math.round(p) || BASE));
+    input.value = p;
+    render(p);
+  }
+  input.addEventListener('input', function(){
+    var v = parseInt(input.value, 10);
+    if(!isNaN(v) && v >= 2 && v <= 40) render(v);
+  });
+  input.addEventListener('change', function(){ set(parseInt(input.value, 10)); });
+  document.getElementById('menos').addEventListener('click', function(){ set(parseInt(input.value, 10) - 1); });
+  document.getElementById('mais').addEventListener('click', function(){ set(parseInt(input.value, 10) + 1); });
+  document.querySelectorAll('.presets button').forEach(function(b){
+    b.addEventListener('click', function(){ set(parseInt(b.dataset.p, 10)); });
+  });
+  render(BASE);
 })();
 </script>
 </body>
